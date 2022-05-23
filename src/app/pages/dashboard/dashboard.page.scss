@@ -1,0 +1,392 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@100;400&');
+
+ion-toolbar{
+  --background: #ff7400;
+  --opacity: 1 !important;
+  box-shadow: none;
+  div.container-topo{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    div.texto-dashboard{
+      color: #ffffff;
+      font-size: 18px;
+      font-weight: 500;
+      margin-left: 10px;
+      width: 85%;
+    }
+    
+    ion-icon{
+      color: #ffffff;
+      font-size: 20px;
+      margin-right: 10px;
+    }
+  }
+}
+
+ion-content{
+  --background: #e9e9e9;
+
+  div.opcoes-topo{
+    height: 48px;
+    width: 100%;
+    background-color: #fff;
+    box-shadow: 0px 0px 4px 1px #00000025;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    div.divisoria-topo{
+      width: calc(100%/3);
+      padding: -10px;
+      border-right: 1px solid #e9e9e9;
+      display: flex;
+      align-items: center;
+      flex-direction: column;
+      justify-content: center;
+
+      .preco-time{
+        font-size: 10px;
+        color: #9b9b9b;
+      }
+
+      .cs{
+        font-size: 12px;
+        color: #9b9b9b;
+      }
+
+      .mercado-fechamento{
+        font-size: 10px;
+        color: #9b9b9b;
+      }
+
+      .horario-fechamento{
+        font-size: 12px;
+        ion-icon{
+          color: #9b9b9b;
+        }
+      }
+
+      .cartoletas-topo{
+        font-size: 10px;
+        color: #9b9b9b;
+      }
+    }
+
+  }
+
+  div.corpo{
+    width: 92%;
+    margin: 0 auto;
+    div.cartola-pro{
+      height: 130px;
+      background-color: #fff;
+      width: 100%;
+      margin-top: 20px;
+      border-radius: 5px;
+      box-shadow: 0px 2px 1px 0px #00000035;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      .img{
+        width: 30%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+        bottom: 10px;
+        img{
+          width: 60px;
+        }
+      }
+
+      .conteudo-pro{
+        width: 70%;
+        height: 80%;
+        display: flex;
+        flex-direction: column;
+        .pro-joga{
+          color: #ff7400;
+          font-weight: bold;
+          font-size: 15px;
+          margin-bottom: 5px;
+        }
+
+        .dicas{
+          font-size: 12px;
+          line-height: 1.4em;
+          padding-right: 20px;
+          margin-bottom: 10px;
+        }
+
+        .vire-pro{
+          color: #ff7400;
+          font-weight: bold;
+          font-size: 12px;
+          margin-bottom: 5px;
+        }
+      }
+    }
+
+    div.perfil{
+      background-color: #fff;
+      width: 100%;
+      margin-top: 20px;
+      border-radius: 5px;
+      box-shadow: 0px 2px 1px 0px #00000035;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      padding: 10px;
+
+      .ver-perfil{
+        color: #ff7400;
+        font-size: 9px;
+        font-weight: bold;
+        width: 100%;
+        
+        span{
+          display: flex;
+          justify-content: flex-end;
+          margin-right: 5px;
+        }
+      }
+
+      .topo-perfil{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        .img-perfil{
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          .caixa-facebook{
+            width: 30px;
+            height: 30px;
+            background-color: #fff;
+            border-radius: 50%;
+            background-size: cover;
+            position: relative;
+            top: 15px;
+            right: 15px;
+          }
+        }
+
+        .caixa-nome{
+          width: 60%;
+          height: 60px;
+          display: flex;
+          align-items: flex-start;
+          justify-content: center;
+          flex-direction: column;
+          span.nome-time{
+            font-weight: bold;
+            line-height: 1.2em;
+            font-size: 15px;
+          }
+
+          span.nivel-time{
+            font-size: 12px;
+            color: #9b9b9b;
+            font-weight: 400 !important;
+          }
+        }
+
+      }
+      .caixa-dados{
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-top: 10px;
+        
+        span.titulo-caixa-dados{
+          font-size: 8.5px;
+          color: #9b9b9b;
+        }
+
+        span.texto-caixa-dados{
+          font-size: 15px;
+          font-weight: bold;
+        }
+
+        div.jog-pontuados{
+          width: calc(100%/3);
+          height: 50px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          flex-direction: column;
+        }
+        div.parcial-rodada{
+          width: calc(100%/3);
+          height: 50px;
+          margin-left: 15px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          flex-direction: column;
+        }
+        div.parcial-total{
+          width: calc(100%/3);
+          height: 50px;
+          margin-left: 15px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          flex-direction: column;
+        }
+      }
+    }
+
+    .container-jogos{
+      background-color: #fff;
+      width: 100%;
+      margin-top: 20px;
+      border-radius: 5px;
+      box-shadow: 0px 2px 1px 0px #00000035;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      div.jogos{
+        height: 140px;
+        border-top: 1px solid #ececec;
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 20px;
+        
+        div.caixa-jogos{
+          width: 100%;
+          height: 100%;
+          div.local{
+            height: 20%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-transform: capitalize;
+            font-size: 12px;
+            color: #9b9b9b;
+            span.bola{
+              color: black !important;
+            }
+          }
+
+          div.confrontos{
+            height: 60%;
+            width: 90%;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-evenly;
+
+            .time-casa{
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              img{
+                margin-left: 10px;
+              }
+              div.e{
+                width: 6px;
+                height: 6px;
+                background-color: gray;
+                border-radius: 50%;
+                margin-left: 2px;
+              }
+              div.v{
+                width: 6px;
+                height: 6px;
+                background-color: green;
+                border-radius: 50%;
+                margin-left: 2px;
+              }
+              div.d{
+                width: 6px;
+                height: 6px;
+                background-color: red;
+                border-radius: 50%;
+                margin-left: 2px;
+              }
+
+              .ultimo{
+                width: 8px !important;
+                height: 8px !important;
+              }
+
+            }
+            .placar{
+              font-size: 16px;
+              font-weight: bold;
+            }
+
+            .time-visitante{
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              img{
+                margin-right: 10px;
+              }
+              div.e{
+                width: 6px;
+                height: 6px;
+                background-color: gray;
+                border-radius: 50%;
+                margin-left: 2px;
+              }
+              div.v{
+                width: 6px;
+                height: 6px;
+                background-color: green;
+                border-radius: 50%;
+                margin-left: 2px;
+              }
+              div.d{
+                width: 6px;
+                height: 6px;
+                background-color: red;
+                border-radius: 50%;
+                margin-left: 2px;
+              }
+              .ultimo{
+                width: 8px !important;
+                height: 8px !important;
+              }
+            }
+
+          }
+          .validade{
+            font-size: 10px;
+            color: #9b9b9b;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+          }
+
+          .encerrada, .andamento{
+            font-size: 10px;
+            font-weight: bold;
+            text-transform: uppercase;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            a{
+              text-decoration: none;
+              color: #ff7400;
+            }
+          }
+
+          
+        }
+        
+      }
+    }
+  }
+}

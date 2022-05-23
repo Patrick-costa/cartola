@@ -1,0 +1,15 @@
+<ion-app>
+
+  <ion-split-pane contentId="main-content">
+    <ion-menu contentId="main-content" type="overlay">
+      <ion-content style="--background: #ff7400 !important">
+        <ion-list id="inbox-list" style="background: #ff7400 !important; color: #fff">
+          <ion-menu-toggle auto-hide="false">
+            <br><br>
+          </ion-menu-toggle>
+        </ion-list>
+      </ion-content>
+    </ion-menu>
+    <ion-router-outlet id="main-content"></ion-router-outlet>
+  </ion-split-pane>
+</ion-app>
