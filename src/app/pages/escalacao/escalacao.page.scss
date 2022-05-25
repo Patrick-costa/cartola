@@ -1,0 +1,202 @@
+ion-toolbar {
+    --background: #ff7400;
+    --opacity: 1 !important;
+    box-shadow: none;
+    div.container-topo {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        div.texto-dashboard {
+            color: #ffffff;
+            font-size: 18px;
+            font-weight: 500;
+            margin-left: 10px;
+            width: 85%;
+        }
+
+        ion-icon {
+            color: #ffffff;
+            font-size: 20px;
+            margin-right: 10px;
+        }
+    }
+}
+
+ion-content {
+    --background: #e9e9e9;
+
+    div.opcoes-topo {
+        height: 48px;
+        width: 100%;
+        background-color: #fff;
+        box-shadow: 0px 0px 4px 1px #00000025;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        div.divisoria-topo {
+            width: calc(100% / 3);
+            padding: -10px;
+            border-right: 1px solid #e9e9e9;
+            display: flex;
+            align-items: center;
+            flex-direction: column;
+            justify-content: center;
+
+            .preco-time {
+                font-size: 10px;
+                color: #9b9b9b;
+            }
+
+            .cs {
+                font-size: 10px;
+                color: #9b9b9b;
+            }
+
+            .mercado-fechamento {
+                font-size: 10px;
+                color: #9b9b9b;
+            }
+
+            .horario-fechamento {
+                font-size: 12px;
+                font-weight: bold;
+                ion-icon {
+                    color: #9b9b9b;
+                }
+            }
+
+            .valor {
+                font-weight: bold;
+            }
+
+            .cartoletas-topo {
+                font-size: 10px;
+                color: #9b9b9b;
+            }
+        }
+    }
+
+    div.corpo {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+
+        .cartola-campinho {
+            background: url('../../../assets/img/campinho-sem-borda.svg') center center no-repeat;
+            background-size: contain;
+            height: 359px;
+            width: 98vw;
+            transition: all 0.6s ease;
+            position: relative;
+            margin: 0 auto;
+            margin-top: 20px !important; 
+        }
+
+
+        .caixa-topo{
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            width: 100%;
+            padding-left: 20px;
+            padding-right: 20px;
+            margin-top: 20px;
+        }
+
+        .dropdown{
+            width: 80px;
+            color: #ff7400;
+            font-weight: bold;
+            font-size: 15px;
+            .dropdown-select{  
+                padding: 10px;
+                border-radius: 6px;
+                background-color: white;
+                width: 80px;
+                display: flex;
+                align-items: center;
+                justify-content: space-evenly;
+                cursor: pointer;
+
+                ion-icon{
+                    position: relative;
+                    font-weight: bold;
+                    left: 5px;
+                    top: 3px;
+                }
+            }
+            
+            .caixa-dropdown{
+                border-radius: 6px;
+                background-color: white;
+                position: absolute;
+                top: 128px;
+                height: 0;
+                z-index: 999;
+
+                .dropdown-list{
+                    background-color: white;
+                    border-radius: 6px;
+                    height: 0px;
+
+                }
+    
+                .dropdown-list_item{
+                    padding: 1rem;
+                    opacity: 0;
+                    font-size: 15px;
+                    height: 0px;
+                    width: 80px;
+                    background-color: white;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                }
+            }
+        }
+
+        .dropdown:hover{
+            .caixa-dropdown{
+                height: 364px;
+                .dropdown-list{
+                    height: 52px;
+                    .dropdown-list_item{
+                        opacity: 1;
+                        height: 50px;
+                    }
+                }
+            }
+        }
+        div.opcoes-time{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            .opcao{
+                border-radius: 5px;
+                width: 50px;
+                height: 45px;
+                background-color: #fff;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                margin-left: 10px;
+                ion-icon{
+                    font-size: 25px;
+                    color: #9b9b9b;
+                }
+
+            }
+            .active{
+                background-color: #ff7400;
+                ion-icon{
+                    color: #fff
+                }
+            }
+        }   
+
+    }
+}

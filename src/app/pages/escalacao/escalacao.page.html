@@ -1,9 +1,70 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>escalacao</ion-title>
-  </ion-toolbar>
-</ion-header>
+<ion-content [fullscreen]="true">
 
-<ion-content>
+  <ion-header [translucent]="true">
+    <ion-toolbar>
+      <ion-buttons slot="start">
+        <ion-menu-button style="color: #fff"></ion-menu-button>
+      </ion-buttons>
+      <div class="container-topo">
+        <div class="texto-dashboard">Dashboard</div>
+        <ion-icon name="notifications"></ion-icon>
+      </div>
+    </ion-toolbar>
+  </ion-header>
+  <!-- 21/05 - 16:00 -->
+  <div class="opcoes-topo" *ngIf="status['status_mercado'] == 1">
+    <div class="divisoria-topo">
+      <span class="preco-time">PREÇO DO TIME</span>
+      <span><span class="cs">C$</span><span class="valor">&nbsp;{{valorTime}}</span></span>
+    </div>
+    <div class="divisoria-topo">
+      <span class="mercado-fechamento">MERCADO FECHA EM</span>
+      <span class="horario-fechamento">{{dataStatus[0]}}/{{dataStatus[1]}} - {{dataStatus[3]}}:{{dataStatus[4] | date:
+        'mm'}} <ion-icon name="alert-circle"></ion-icon></span>
+    </div>
+    <div class="divisoria-topo">
+      <span class="cartoletas-topo">VOCÊ AINDA TEM</span>
+      <span><span class="cs">C$</span><span class="valor">&nbsp;{{cartoletasRestantes}}</span></span>
+    </div>
+  </div>
+
+  <div class="opcoes-topo" *ngIf="status['status_mercado'] == 2">
+    <div class="divisoria-topo" style="border: none;">
+      <span class="preco-time">MERCADO</span>
+      <span class="valor"><b>FECHADO</b></span>
+    </div>
+  </div>
+
+  <div class="corpo">
+    <div class="caixa-topo">
+      <div class="dropdown">
+        <div class="dropdown-select">
+          <span class="select">{{esquemaAtual}} <ion-icon name="chevron-down-outline"></ion-icon></span>
+        </div>
+        <div class="caixa-dropdown">
+          <div class="dropdown-list" *ngFor="let dados of esquemas">
+            <div class="dropdown-list_item" (click)="definirEsquema(dados.nome)">
+              <span>{{dados.nome}}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="opcoes-time">
+        <div class="opcao active" (click)="opcaoCampo()" #opcao1>
+          <ion-icon name="football-outline"></ion-icon>
+        </div>
+        <br>
+        <div class="opcao" (click)="opcaoLista()" #opcao2>
+          <ion-icon name="reorder-four-outline"></ion-icon>
+        </div>
+      </div>
+    </div>
+    <div class="cartola-campinho">
+
+    </div>
+
+
+  </div>
+  <br>
 
 </ion-content>

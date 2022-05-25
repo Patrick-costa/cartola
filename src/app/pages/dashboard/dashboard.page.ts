@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { findReadVarNames } from '@angular/compiler/src/output/output_ast';
 
 @Component({
   selector: 'app-dashboard',
@@ -17,14 +18,22 @@ export class DashboardPage implements OnInit {
   dataStatus = [];
   token = "1d05015f5c1fe8d822740a1bb678e0b2c674b636938664e6b774d384c6541554d4e644a417243495267436e48666d3049376a6678503233743879544371394a516a634251706378576d4747654d5772355f7265326c3875716277395437505938477369674a513d3d3a303a7061747269636b32335f636f7374612e32303135";
   usuario = {};
-  public usuarios_time = {};
+  usuarios_time = {};
   fotoPerfil;
-  
+  valorTime;
+  cartoletasRestantes;
+  destaques = [];
+  destaquesReservas = [];
+  mostrarTodosTitulares: boolean;
+  mostrarTodosReservas: boolean;
+
   ngOnInit() {
     this.carregarTime();
     this.carregarJogos();
     this.carregarStatus();
     this.carregarUsuario();
+    this.carregarTitulares();
+    this.carregarReservas();
   }
 
   carregarUsuario(){  
@@ -35,8 +44,64 @@ export class DashboardPage implements OnInit {
     this.usuario = x;
     this.usuarios_time = x['time'];
     this.fotoPerfil = x['time'].foto_perfil;
+    this.valorTime = Math.round(this.usuario['valor_time'] * 100)/100;
+    this.cartoletasRestantes = Math.round((x['patrimonio'] - this.usuario['valor_time']) *100)/100;
     })
     
+  }
+
+  carregarTitulares(){
+    this.http.get('https://api.cartola.globo.com/mercado/destaques').subscribe(x => {
+    this.destaques = Object.values(x);
+    this.destaques = this.destaques.slice(0,5);
+    
+    this.destaques.forEach(y => {
+      y.Atleta.foto = y.Atleta.foto.replace('FORMATO', '140x140');
+    })
+
+    this.mostrarTodosTitulares= false;
+    
+    })
+
+  }
+
+  carregarReservas(){
+    this.http.get('https://api.cartola.globo.com/mercado/destaques/reservas').subscribe(x => {
+      this.destaquesReservas = Object.values(x);
+      this.destaquesReservas = this.destaquesReservas.slice(0,5);
+
+      this.destaquesReservas.forEach(y => {
+        y.Atleta.foto = y.Atleta.foto.replace('FORMATO', '140x140');
+      });
+      this.mostrarTodosReservas = false;
+      console.log(this.destaquesReservas);
+    })
+  }
+
+  carregarTodosTitulares(){
+    this.http.get('https://api.cartola.globo.com/mercado/destaques').subscribe(x => {
+      this.destaques= Object.values(x);
+
+      this.destaques.forEach(y => {
+        y.Atleta.foto = y.Atleta.foto.replace('FORMATO', '140x140');
+      });
+
+    });
+  
+    this.mostrarTodosTitulares = true;
+  }
+
+  carregarTodosReservas(){
+    this.http.get('https://api.cartola.globo.com/mercado/destaques').subscribe(x => {
+      this.destaquesReservas= Object.values(x);
+
+      this.destaquesReservas.forEach(y => {
+        y.Atleta.foto = y.Atleta.foto.replace('FORMATO', '140x140');
+      });
+
+    })
+
+    this.mostrarTodosReservas = true;
   }
 
   carregarStatus(){

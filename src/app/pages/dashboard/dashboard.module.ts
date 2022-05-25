@@ -8,12 +8,15 @@ import { DashboardPageRoutingModule } from './dashboard-routing.module';
 
 import { DashboardPage } from './dashboard.page';
 
+import { MaterialDesignModule } from 'src/app/share/material-design/material-design.module';
+
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    DashboardPageRoutingModule
+    DashboardPageRoutingModule,
+    MaterialDesignModule
   ],
   declarations: [DashboardPage]
 })

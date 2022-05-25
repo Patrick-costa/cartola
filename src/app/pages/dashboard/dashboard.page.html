@@ -15,7 +15,7 @@
   <div class="opcoes-topo" *ngIf="status['status_mercado'] == 1">
     <div class="divisoria-topo">
       <span class="preco-time">PREÇO DO TIME</span>
-      <span><span class="cs">cs</span><span class="valor">&nbsp;{{usuario['valor_time']}},00</span></span>
+      <span><span class="cs">C$</span><span class="valor">&nbsp;{{valorTime}}</span></span>
     </div>
     <div class="divisoria-topo">
       <span class="mercado-fechamento">MERCADO FECHA EM</span>
@@ -24,7 +24,7 @@
     </div>
     <div class="divisoria-topo">
       <span class="cartoletas-topo">VOCÊ AINDA TEM</span>
-      <span><span class="cs">cs</span><span class="valor">&nbsp;{{usuario['patrimonio']}},00</span></span>
+      <span><span class="cs">C$</span><span class="valor">&nbsp;{{cartoletasRestantes}}</span></span>
     </div>
   </div>
 
@@ -100,49 +100,62 @@
       </div>
     </div>
 
-    <!-- <div class="perfil" *ngFor="let dados of time">
-      <div class="ver-perfil">
-        <span class="texto">VER PERFIL</span>
-      </div>
-      <div class="topo-perfil">
-        <div class="img-perfil">
-          <img width='70' height="68" src="{{dados.url_escudo_png}}">
-          <div class="caixa-facebook" style="background-image: url('{{dados.foto_perfil}}')">
-          </div>
-        </div>
-        <div class="caixa-nome">
-          <span class="nome-time">{{dados.nome}}<br>
-            <span class="nivel-time">Nivel Inicial</span></span>
-        </div>
-      </div>
-      <div class="caixa-dados">
-        <div class="jog-pontuados">
-          <span class="titulo-caixa-dados">
-            JOG. PONTUADOS
-          </span>
-          <span class="texto-caixa-dados">
-            0/12
-          </span>
-        </div>
-        <div class="parcial-rodada">
-          <span class="titulo-caixa-dados">
-            PARCIAL DA RODADA
-          </span>
-          <span class="texto-caixa-dados">
-            ---
-          </span>
-        </div>
-        <div class="parcial-total">
-          <span class="titulo-caixa-dados">
-            PARCIAL TOTAL
-          </span>
-          <span class="texto-caixa-dados">
-            0.00
-          </span>
-        </div>
-      </div>
-    </div> -->
+    <span class="jogos-rodada">os mais escalados</span>
+    <div class="corpo-destaques">
+      <div class="destaques">
+        <mat-tab-group>
+          <mat-tab label="Titulares" >
+            <div class="lista-destaques" *ngFor="let dados of destaques, let i = index">
+              <div class="img" style="background-image: url('{{dados.Atleta.foto}}')">
+              </div>
+              <img class='escudo' src="{{dados.escudo_clube}}" width='25'>
+              <div class="index">
+                {{i+1}}º
+              </div>
+              <div class="dados-atleta">
+                <span class="apelido">{{dados.Atleta.apelido}}</span>
+                <span><span class='posicao'>{{dados.posicao_abreviacao}}</span>&nbsp;<span class='time'>{{dados.clube_nome}}</span></span>
+                <span class="escalado-por">Escalado por</span>
+                <span><span class="num-cartoleiros">{{dados.escalacoes}}</span>&nbsp;<span class="escalado-por">Cartoleiros</span></span>
+              </div>
+            </div>
+            <div class="botao-ver" *ngIf="mostrarTodosTitulares== false">
+              <button (click)='carregarTodosTitulares()'>VER TODOS OS ATLETAS</button>
+            </div>
 
+            <div class="botao-ver" *ngIf="mostrarTodosTitulares == true">
+              <button (click)='carregarTitulares()'>DESFAZER</button>
+            </div>
+          </mat-tab>
+          <mat-tab label="Reservas">
+            <div class="lista-reserva" *ngFor="let dados of destaquesReservas, let i = index">
+              <div class="img" style="background-image: url('{{dados.Atleta.foto}}')">
+              </div>
+              <img class='escudo' src="{{dados.escudo_clube}}" width='25'>
+              <div class="index">
+                {{i+1}}º
+              </div>
+              <div class="dados-atleta">
+                <span class="apelido">{{dados.Atleta.apelido}}</span>
+                <span><span class='posicao'>{{dados.posicao_abreviacao}}</span>&nbsp;<span class='time'>{{dados.clube_nome}}</span></span>
+                <span class="escalado-por">Escalado por</span>
+                <span><span class="num-cartoleiros">{{dados.escalacoes}}</span>&nbsp;<span class="escalado-por">Cartoleiros</span></span>
+              </div>
+            </div>
+
+            <div class="botao-ver" *ngIf="mostrarTodosReservas == false">
+              <button (click)='carregarTodosReservas()'>VER TODOS OS ATLETAS</button>
+            </div>
+
+            <div class="botao-ver" *ngIf="mostrarTodosReservas == true">
+              <button (click)='carregarReservas()'>DESFAZER</button>
+            </div>
+          </mat-tab>
+        </mat-tab-group>
+      </div>
+    </div>
+
+    <span class="jogos-rodada">Jogos da Rodada {{usuario['rodada_atual']}}</span>
     <div class="container-jogos">
       <div class="jogos" *ngFor="let dados of confrontos">
         <div class="caixa-jogos">
