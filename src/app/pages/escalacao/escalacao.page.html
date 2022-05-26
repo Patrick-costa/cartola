@@ -60,10 +60,84 @@
       </div>
     </div>
     <div class="cartola-campinho">
+      <div class="caixa-gol" *ngFor="let goleiro of gol">
+        <div class="pontuacao-flutuante">
+          <span>C$ {{goleiro.preco_num}}</span>
+        </div>
+        <div class="gol" style="background-image: url('{{goleiro.foto}}')">
+        </div>
+        <div class="label-goleiro">
+          <span>
+            {{goleiro.apelido_abreviado}}
+          </span>
+        </div>
+      </div>
 
+      <div class="caixa-zag{{i}}" *ngFor="let zagueiro of zag, let i = index">
+        <div class="pontuacao-flutuante">
+          <span>C$ {{zagueiro.preco_num}}</span>
+        </div>
+        <div class="zag" style="background-image: url('{{zagueiro.foto}}')">
+        </div>
+        <div class="label-zagueiro">
+          <span>
+            {{zagueiro.apelido_abreviado}}
+          </span>
+        </div>
+      </div>
+
+      <div class="caixa-lat{{i}}" *ngFor="let lateral of lat, let i = index">
+        <div class="pontuacao-flutuante">
+          <span>C$ {{lateral.preco_num}}</span>
+        </div>
+        <div class="lat" style="background-image: url('{{lateral.foto}}')">
+        </div>
+        <div class="label-lateral">
+          <span>
+            {{lateral.apelido_abreviado}}
+          </span>
+        </div>
+      </div>
+
+      <div class="caixa-mei{{i}}" *ngFor="let meia of mei, let i = index">
+        <div class="pontuacao-flutuante">
+          <span>C$ {{meia.preco_num}}</span>
+        </div>
+        <div class="mei" style="background-image: url('{{meia.foto}}')">
+        </div>
+        <div class="label-meia">
+          <span>
+            {{meia.apelido_abreviado}}
+          </span>
+        </div>
+      </div>
+
+      <div class="caixa-ata{{i}}" *ngFor="let atacante of ata, let i = index">
+        <div class="pontuacao-flutuante">
+          <span>C$ {{atacante.preco_num}}</span>
+        </div>
+        <div class="ata" style="background-image: url('{{atacante.foto}}')">
+        </div>
+        <div class="label-atacante">
+          <span>
+            {{atacante.apelido_abreviado}}
+          </span>
+        </div>
+      </div>
+
+      <div class="caixa-tec" *ngFor="let tecnico of tec">
+        <div class="pontuacao-flutuante">
+          <span>C$ {{tecnico.preco_num}}</span>
+        </div>
+        <div class="tec" style="background-image: url('{{tecnico.foto}}')">
+        </div>
+        <div class="label-atacante">
+          <span>
+            {{tecnico.apelido_abreviado}}
+          </span>
+        </div>
+      </div>
     </div>
-
-
   </div>
   <br>
 

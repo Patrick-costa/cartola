@@ -84,19 +84,186 @@ ion-content {
         justify-content: center;
         flex-direction: column;
 
+        @media only screen and (min-width: 38.75em) {
+            .cartola-campinho {
+                width: 45vw;
+            }
+        }
         .cartola-campinho {
-            background: url('../../../assets/img/campinho-sem-borda.svg') center center no-repeat;
+            background: url("../../../assets/img/campinho-sem-borda.svg") center center no-repeat;
             background-size: contain;
             height: 359px;
             width: 98vw;
             transition: all 0.6s ease;
             position: relative;
             margin: 0 auto;
-            margin-top: 20px !important; 
+            margin-top: 20px !important;
+            .label-goleiro,
+            .label-zagueiro,
+            .label-lateral,
+            .label-meia,
+            .label-atacante,
+            .label-tecnico {
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                max-width: 55px;
+                background-color: #1c813e;
+                border-radius: 4px;
+                color: #fff;
+                font-size: 9px;
+                line-height: 9px;
+                margin-top: 3px;
+                padding: 3px;
+                text-transform: capitalize;
+                text-align: center;
+            }
+            .gol,
+            .zag,
+            .lat,
+            .mei,
+            .ata,
+            .tec {
+                width: 35px;
+                height: 35px;
+                background-color: #fff;
+                border-radius: 50%;
+                background-position: center top;
+                background-size: cover;
+                border: 1px solid #fff;
+            }
+
+            .pontuacao-flutuante{
+                width: 40px;
+                font-size: 9px;
+                color: #999;
+                background-color: #fff;
+                border-radius: 2px;
+                height: 15px;
+                line-height: 15px;
+                margin-bottom: 4px;
+                font-weight: bold;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+            .caixa-gol {
+                position: absolute;
+                bottom: 10%;
+                left: 45%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                flex-direction: column;
+            }
+            .caixa-zag0 {
+                position: absolute;
+                bottom: 31%;
+                left: 33%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                flex-direction: column;
+            }
+            .caixa-zag1 {
+                position: absolute;
+                bottom: 31%;
+                right: 33%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                flex-direction: column;
+            }
+
+            .caixa-lat0 {
+                position: absolute;
+                bottom: 31%;
+                left: 14%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                flex-direction: column;
+            }
+            .caixa-lat1 {
+                position: absolute;
+                bottom: 31%;
+                right: 14%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                flex-direction: column;
+            }
+            
+
+            .caixa-mei0 {
+                position: absolute;
+                top: 26%;
+                right: 19%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                flex-direction: column;
+            }
+            .caixa-mei1 {
+                position: absolute;
+                top: 26%;
+                left: 44%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                flex-direction: column;
+            }
+            .caixa-mei2 {
+                position: absolute;
+                top: 26%;
+                left: 19%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                flex-direction: column;
+            }
+            .caixa-ata1 {
+                position: absolute;
+                top: 3.5%;
+                left: 22%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                flex-direction: column;
+            }
+
+            .caixa-ata2 {
+                position: absolute;
+                top: 3.5%;
+                left: 45%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                flex-direction: column;
+            }
+
+            .caixa-ata0 {
+                position: absolute;
+                top: 3.5%;
+                right: 22%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                flex-direction: column;
+            }
+
+            .caixa-tec {
+                position: absolute;
+                bottom: 10%;
+                left: 11%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                flex-direction: column;
+            }
         }
 
-
-        .caixa-topo{
+        .caixa-topo {
             display: flex;
             align-items: center;
             justify-content: space-between;
@@ -106,12 +273,12 @@ ion-content {
             margin-top: 20px;
         }
 
-        .dropdown{
+        .dropdown {
             width: 80px;
             color: #ff7400;
             font-weight: bold;
             font-size: 15px;
-            .dropdown-select{  
+            .dropdown-select {
                 padding: 10px;
                 border-radius: 6px;
                 background-color: white;
@@ -121,15 +288,15 @@ ion-content {
                 justify-content: space-evenly;
                 cursor: pointer;
 
-                ion-icon{
+                ion-icon {
                     position: relative;
                     font-weight: bold;
                     left: 5px;
                     top: 3px;
                 }
             }
-            
-            .caixa-dropdown{
+
+            .caixa-dropdown {
                 border-radius: 6px;
                 background-color: white;
                 position: absolute;
@@ -137,14 +304,13 @@ ion-content {
                 height: 0;
                 z-index: 999;
 
-                .dropdown-list{
+                .dropdown-list {
                     background-color: white;
                     border-radius: 6px;
                     height: 0px;
-
                 }
-    
-                .dropdown-list_item{
+
+                .dropdown-list_item {
                     padding: 1rem;
                     opacity: 0;
                     font-size: 15px;
@@ -158,24 +324,24 @@ ion-content {
             }
         }
 
-        .dropdown:hover{
-            .caixa-dropdown{
+        .dropdown:hover {
+            .caixa-dropdown {
                 height: 364px;
-                .dropdown-list{
+                .dropdown-list {
                     height: 52px;
-                    .dropdown-list_item{
+                    .dropdown-list_item {
                         opacity: 1;
                         height: 50px;
                     }
                 }
             }
         }
-        div.opcoes-time{
+        div.opcoes-time {
             display: flex;
             align-items: center;
             justify-content: center;
 
-            .opcao{
+            .opcao {
                 border-radius: 5px;
                 width: 50px;
                 height: 45px;
@@ -184,19 +350,17 @@ ion-content {
                 align-items: center;
                 justify-content: center;
                 margin-left: 10px;
-                ion-icon{
+                ion-icon {
                     font-size: 25px;
                     color: #9b9b9b;
                 }
-
             }
-            .active{
+            .active {
                 background-color: #ff7400;
-                ion-icon{
-                    color: #fff
+                ion-icon {
+                    color: #fff;
                 }
             }
-        }   
-
+        }
     }
 }
