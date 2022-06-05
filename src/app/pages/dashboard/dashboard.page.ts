@@ -26,7 +26,11 @@ export class DashboardPage implements OnInit {
   destaquesReservas = [];
   mostrarTodosTitulares: boolean;
   mostrarTodosReservas: boolean;
-
+  parciais = [];
+  listaEscalados = [];
+  pontuacao = 0;
+  jogadoresPontuados = 0;
+  capitao;
   ngOnInit() {
     this.carregarTime();
     this.carregarJogos();
@@ -36,39 +40,81 @@ export class DashboardPage implements OnInit {
     this.carregarReservas();
   }
 
-  carregarUsuario(){  
+  carregarUsuario() {
     let headers = new HttpHeaders().append('X-GLB-Token', this.token);
 
-    this.http.get('https://cors-anywhere.herokuapp.com/https://api.cartolafc.globo.com/auth/time', {headers}).subscribe(x => {
-    console.log(x);
-    this.usuario = x;
-    this.usuarios_time = x['time'];
-    this.fotoPerfil = x['time'].foto_perfil;
-    this.valorTime = Math.round(this.usuario['valor_time'] * 100)/100;
-    this.cartoletasRestantes = Math.round((x['patrimonio'] - this.usuario['valor_time']) *100)/100;
+    this.http.get('https://cors-anywhere.herokuapp.com/https://api.cartolafc.globo.com/auth/time', { headers }).subscribe(x => {
+      console.log(x);
+      this.usuario = x;
+      this.capitao = this.usuario['capitao_id'];
+      this.usuario['pontos'] = Math.round((this.usuario['pontos']) * 100)/100;
+      this.usuario['pontos_campeonato'] = Math.round((this.usuario['pontos_campeonato']) *100)/100;
+      this.usuarios_time = x['time'];
+      this.fotoPerfil = x['time'].foto_perfil;
+      this.valorTime = Math.round(this.usuario['valor_time'] * 100) / 100;
+      this.cartoletasRestantes = Math.round((x['patrimonio'] - this.usuario['valor_time']) * 100) / 100;
+
+      //Separar lista para POST de salvar escalação
+      for (var i = 0; i < 12; i++) {
+        this.listaEscalados[i] = this.usuario['atletas'][i].atleta_id;
+      }
+      console.log(this.listaEscalados)
+      
+      setTimeout(() => {      
+        if(this.status['status_mercado'] == 2){
+          //Retorna os atletas pontuados e realiza filtragem com os atletas escalados pelo usuario
+          this.http.get('https://api.cartola.globo.com/atletas/pontuados').subscribe(x => {
+            const result = [x];
+            result.filter(x => {
+              for (var i = 0; i < 12; i++) {
+                this.parciais[i] = [x['atletas'][this.listaEscalados[i]]];
+                if (this.parciais[i][0] == undefined) {
+                  this.parciais[i][0] = { 'apelido': '','pontuacao':0};
+                }
+              }
+            });
+            console.log(this.parciais);
+          });
+        }
+      }, 500);
     })
-    
+
+    setTimeout(() => {
+      if(this.status['status_mercado'] == 2){
+      for(var i = 0; i < 12; i++){
+        this.pontuacao += (this.parciais[i][0].pontuacao); 
+        this.pontuacao = Math.round(this.pontuacao * 100)/100
+        console.log(this.pontuacao)
+      }
+      let array = [];
+      array = this.parciais.filter(x => {
+        return x[0].apelido != '' && x[0];
+      });
+      console.log(array)
+      this.jogadoresPontuados = array.length;
+    }
+    }, 3500);
   }
 
-  carregarTitulares(){
+  carregarTitulares() {
     this.http.get('https://api.cartola.globo.com/mercado/destaques').subscribe(x => {
-    this.destaques = Object.values(x);
-    this.destaques = this.destaques.slice(0,5);
-    
-    this.destaques.forEach(y => {
-      y.Atleta.foto = y.Atleta.foto.replace('FORMATO', '140x140');
-    })
+      this.destaques = Object.values(x);
+      this.destaques = this.destaques.slice(0, 5);
 
-    this.mostrarTodosTitulares= false;
-    
+      this.destaques.forEach(y => {
+        y.Atleta.foto = y.Atleta.foto.replace('FORMATO', '140x140');
+      })
+
+      this.mostrarTodosTitulares = false;
+
     })
 
   }
 
-  carregarReservas(){
+  carregarReservas() {
     this.http.get('https://api.cartola.globo.com/mercado/destaques/reservas').subscribe(x => {
       this.destaquesReservas = Object.values(x);
-      this.destaquesReservas = this.destaquesReservas.slice(0,5);
+      this.destaquesReservas = this.destaquesReservas.slice(0, 5);
 
       this.destaquesReservas.forEach(y => {
         y.Atleta.foto = y.Atleta.foto.replace('FORMATO', '140x140');
@@ -78,22 +124,22 @@ export class DashboardPage implements OnInit {
     })
   }
 
-  carregarTodosTitulares(){
+  carregarTodosTitulares() {
     this.http.get('https://api.cartola.globo.com/mercado/destaques').subscribe(x => {
-      this.destaques= Object.values(x);
+      this.destaques = Object.values(x);
 
       this.destaques.forEach(y => {
         y.Atleta.foto = y.Atleta.foto.replace('FORMATO', '140x140');
       });
 
     });
-  
+
     this.mostrarTodosTitulares = true;
   }
 
-  carregarTodosReservas(){
+  carregarTodosReservas() {
     this.http.get('https://api.cartola.globo.com/mercado/destaques').subscribe(x => {
-      this.destaquesReservas= Object.values(x);
+      this.destaquesReservas = Object.values(x);
 
       this.destaquesReservas.forEach(y => {
         y.Atleta.foto = y.Atleta.foto.replace('FORMATO', '140x140');
@@ -104,7 +150,7 @@ export class DashboardPage implements OnInit {
     this.mostrarTodosReservas = true;
   }
 
-  carregarStatus(){
+  carregarStatus() {
     this.http.get('https://api.cartola.globo.com/mercado/status').subscribe(x => {
       this.status = JSON.parse(JSON.stringify(x));
       this.dataStatus = Object.values(x['fechamento']);
@@ -116,7 +162,7 @@ export class DashboardPage implements OnInit {
   carregarTime() {
     this.http.get('https://api.cartola.globo.com/times?q=manchester%20capote').subscribe(x => {
       this.time = x;
-      
+
     })
   }
 

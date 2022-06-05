@@ -72,18 +72,18 @@
             JOG. PONTUADOS
           </span>
           <span class="texto-caixa-dados">
-            0/12
+            {{jogadoresPontuados}}/12
           </span>
         </div>
         <div class="parcial-rodada">
           <span class="titulo-caixa-dados">
             PARCIAL DA RODADA
           </span>
-          <span class="texto-caixa-dados" *ngIf="usuario['pontos'] == null">
-            ---
+          <span class="texto-caixa-dados" *ngIf="pontuacao == 0">
+            0.00
           </span>
-          <span class="texto-caixa-dados" *ngIf="usuario['pontos'] != null">
-            {{usuario['pontos']}}
+          <span class="texto-caixa-dados" *ngIf="pontuacao != 0">
+            {{pontuacao}}
           </span>
         </div>
         <div class="parcial-total">

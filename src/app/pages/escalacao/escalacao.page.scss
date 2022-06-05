@@ -133,134 +133,123 @@ ion-content {
                 border: 1px solid #fff;
             }
 
-            .pontuacao-flutuante{
-                width: 40px;
-                font-size: 9px;
-                color: #999;
-                background-color: #fff;
-                border-radius: 2px;
-                height: 15px;
-                line-height: 15px;
-                margin-bottom: 4px;
-                font-weight: bold;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-            }
-            .caixa-gol {
-                position: absolute;
-                bottom: 10%;
-                left: 45%;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                flex-direction: column;
-            }
-            .caixa-zag0 {
-                position: absolute;
-                bottom: 31%;
-                left: 33%;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                flex-direction: column;
-            }
-            .caixa-zag1 {
-                position: absolute;
-                bottom: 31%;
-                right: 33%;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                flex-direction: column;
-            }
+            // .caixa-gol {
+            //     position: absolute;
+            //     bottom: 10%;
+            //     left: 45%;
+            //     display: flex;
+            //     align-items: center;
+            //     justify-content: center;
+            //     flex-direction: column;
+            // }
+            // .caixa-zag0 {
+            //     position: absolute;
+            //     bottom: 31%;
+            //     left: 33%;
+            //     div {
+            //         display: flex;
+            //         align-items: center;
+            //         justify-content: center;
+            //         flex-direction: column;
+            //     }
+            // }
+            // .caixa-zag1 {
+            //     position: absolute;
+            //     bottom: 31%;
+            //     right: 33%;
+            //     div {
+            //         display: flex;
+            //         align-items: center;
+            //         justify-content: center;
+            //         flex-direction: column;
+            //     }
+            // }
 
-            .caixa-lat0 {
-                position: absolute;
-                bottom: 31%;
-                left: 14%;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                flex-direction: column;
-            }
-            .caixa-lat1 {
-                position: absolute;
-                bottom: 31%;
-                right: 14%;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                flex-direction: column;
-            }
-            
+            // .caixa-lat0 {
+            //     position: absolute;
+            //     bottom: 31%;
+            //     left: 14%;
+            //     display: flex;
+            //     align-items: center;
+            //     justify-content: center;
+            //     flex-direction: column;
+            // }
+            // .caixa-lat1 {
+            //     position: absolute;
+            //     bottom: 31%;
+            //     right: 14%;
+            //     display: flex;
+            //     align-items: center;
+            //     justify-content: center;
+            //     flex-direction: column;
+            // }
 
-            .caixa-mei0 {
-                position: absolute;
-                top: 26%;
-                right: 19%;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                flex-direction: column;
-            }
-            .caixa-mei1 {
-                position: absolute;
-                top: 26%;
-                left: 44%;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                flex-direction: column;
-            }
-            .caixa-mei2 {
-                position: absolute;
-                top: 26%;
-                left: 19%;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                flex-direction: column;
-            }
-            .caixa-ata1 {
-                position: absolute;
-                top: 3.5%;
-                left: 22%;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                flex-direction: column;
-            }
+            // .caixa-mei0 {
+            //     position: absolute;
+            //     top: 26%;
+            //     right: 19%;
+            //     display: flex;
+            //     align-items: center;
+            //     justify-content: center;
+            //     flex-direction: column;
+            // }
+            // .caixa-mei1 {
+            //     position: absolute;
+            //     top: 26%;
+            //     left: 44%;
+            //     display: flex;
+            //     align-items: center;
+            //     justify-content: center;
+            //     flex-direction: column;
+            // }
+            // .caixa-mei2 {
+            //     position: absolute;
+            //     top: 26%;
+            //     left: 19%;
+            //     display: flex;
+            //     align-items: center;
+            //     justify-content: center;
+            //     flex-direction: column;
+            // }
+            // .caixa-ata1 {
+            //     position: absolute;
+            //     top: 3.5%;
+            //     left: 22%;
+            //     display: flex;
+            //     align-items: center;
+            //     justify-content: center;
+            //     flex-direction: column;
+            // }
 
-            .caixa-ata2 {
-                position: absolute;
-                top: 3.5%;
-                left: 45%;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                flex-direction: column;
-            }
+            // .caixa-ata2 {
+            //     position: absolute;
+            //     top: 3.5%;
+            //     left: 45%;
+            //     display: flex;
+            //     align-items: center;
+            //     justify-content: center;
+            //     flex-direction: column;
+            // }
 
-            .caixa-ata0 {
-                position: absolute;
-                top: 3.5%;
-                right: 22%;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                flex-direction: column;
-            }
+            // .caixa-ata0 {
+            //     position: absolute;
+            //     top: 3.5%;
+            //     right: 22%;
+            //     display: flex;
+            //     align-items: center;
+            //     justify-content: center;
+            //     flex-direction: column;
+            // }
 
-            .caixa-tec {
-                position: absolute;
-                bottom: 10%;
-                left: 11%;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                flex-direction: column;
-            }
+            // .caixa-tec {
+            //     position: absolute;
+            //     bottom: 10%;
+            //     left: 11%;
+            //     display: flex;
+            //     align-items: center;
+            //     justify-content: center;
+            //     flex-direction: column;
+            // }
         }
 
         .caixa-topo {
@@ -363,4 +352,474 @@ ion-content {
             }
         }
     }
+
+    .modificar-jogador {
+        width: 100%;
+        background-color: #fff;
+        height: 0px;
+        position: fixed;
+        bottom: 0;
+        z-index: 999;
+    }
+
+    .status-5 {
+        border: 2px solid red !important;
+    }
+
+    .status-7 {
+        border: 1px solid #fff !important;
+    }
+
+    .status-2 {
+        border: 2px solid #fa0 !important;
+    }
+    .status-6 {
+        border: 2px solid red !important;
+    }
+    .status-3 {
+        border: 2px solid red !important;
+    }
+}
+
+.bg-modificar {
+    width: 100%;
+    // height: 100vh;
+    // background-color: #00000035;
+    transition: 1s;
+
+    .modificar-jogador {
+        width: 100%;
+        // height: 60%;
+        transition: 2s;
+        background-color: #fff !important;
+        padding: 20px;
+        position: absolute;
+        bottom: 0;
+        border-top-right-radius: 10px;
+        border-top-left-radius: 10px;
+        z-index: 6;
+        .caixa-topo {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            justify-content: column;
+            width: 100%;
+            .status {
+                display: flex;
+                flex-direction: column;
+                align-items: flex-start;
+                justify-content: flex-start;
+                position: relative;
+                bottom: 30px;
+                .status {
+                    font-size: 10px;
+                    color: #9b9b9b;
+                }
+                .provavel {
+                    position: relative;
+                    bottom: 37px;
+                    font-size: 12px;
+                    color: green;
+                    font-weight: bold;
+                }
+            }
+
+            .atleta {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                flex-direction: column;
+                .foto {
+                    border: 1px solid #e9e9e9;
+                    border-radius: 50%;
+                    width: 50px;
+                    height: 50px;
+                    background-size: cover;
+                }
+                .nome {
+                    font-weight: bold;
+                    margin-top: 5px;
+                }
+                .escudo {
+                    position: relative;
+                    bottom: 83px;
+                    left: 20px;
+                }
+                .preco {
+                    font-size: 16px;
+                    font-weight: bold;
+                    position: relative;
+                    bottom: 5px;
+                }
+                span {
+                    position: relative;
+                    bottom: 2px;
+                    .posicao {
+                        font-weight: bold;
+                        font-size: 10px;
+                        color: #9b9b9b;
+                        text-transform: uppercase;
+                    }
+                    .time {
+                        font-size: 10px;
+                        color: #9b9b9b;
+                    }
+                }
+            }
+        }
+
+        .detalhes {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            flex-direction: column;
+            position: relative;
+            bottom: 20px;
+            .detalhe {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                padding: 5px;
+                .texto-detalhe {
+                    font-size: 12px;
+                    color: #9b9b9b;
+                }
+                .array-detalhe {
+                    font-weight: bold;
+                    font-size: 12px;
+                }
+                .positivo {
+                    font-weight: bold;
+                    font-size: 12px;
+                    color: green;
+                }
+                .negativo {
+                    font-weight: bold;
+                    font-size: 12px;
+                    color: red;
+                }
+                .nulo {
+                    font-weight: bold;
+                    color: #9b9b9b;
+                }
+            }
+
+            button {
+                width: 100%;
+                height: 35px;
+                font-size: 12px;
+                color: #fff;
+                border-radius: 2px;
+                margin-top: 10px;
+                box-shadow: 0px 1px 2px 0px #00000085;
+            }
+            .capitao {
+                background-color: #ff7400;
+            }
+            .vender {
+                background-color: red;
+            }
+        }
+    }
+}
+
+.positivo {
+    font-weight: bold;
+    font-size: 10px;
+    color: green;
+}
+.negativo {
+    font-weight: bold;
+    font-size: 10px;
+    color: red;
+}
+.nulo {
+    font-weight: bold;
+    color: #9b9b9b;
+}
+
+.comprar {
+    background-color: #1c813e !important;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: none !important;
+    box-shadow: 0px 1px 2px 0px #00000085 !important;
+    ion-icon {
+        font-size: 20px;
+        font-weight: 600;
+        color: #fff;
+    }
+}
+
+.linha-1 {
+    width: 300px;
+    margin: 0 auto;
+    position: absolute;
+    bottom: 9%;
+    left: -50%;
+    right: -50%;
+    div.jogadores {
+        display: flex;
+        align-items: center;
+        justify-content: space-around;
+
+        .gol,
+        .tec {
+            width: 35px;
+            height: 35px;
+            background-color: #fff;
+            border-radius: 50%;
+            background-position: center top;
+            background-size: cover;
+            border: 1px solid #fff;
+        }
+        .caixa-gol {
+            width: 40px;
+            position: relative;
+            right: 24.5%;
+        }
+
+        .caixa-tec {
+            position: relative;
+            right: 50px;
+        }
+
+        .caixa-tec,
+        .caixa-gol {
+            width: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+
+            .pontuacao-flutuante {
+                width: 40px;
+                font-size: 9px;
+                color: #999;
+                background-color: #fff;
+                border-radius: 2px;
+                height: 15px;
+                line-height: 15px;
+                margin-bottom: 4px;
+                font-weight: bold;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+        }
+    }
+}
+
+.linha-2 {
+    width: 270px;
+    margin: 0 auto;
+    position: absolute;
+    bottom: 30%;
+    left: -50%;
+    right: -50%;
+    div.jogadores {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        .caixa-zag,
+        .caixa-lat {
+            width: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+
+            .pontuacao-flutuante {
+                width: 40px;
+                font-size: 9px;
+                color: #999;
+                background-color: #fff;
+                border-radius: 2px;
+                height: 15px;
+                line-height: 15px;
+                margin-bottom: 4px;
+                font-weight: bold;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+        }
+        .zag,
+        .lat {
+            width: 35px;
+            height: 35px;
+            background-color: #fff;
+            border-radius: 50%;
+            background-position: center top;
+            background-size: cover;
+            border: 1px solid #fff;
+        }
+    }
+}
+
+.linha-3 {
+    width: 230px;
+    margin: 0 auto;
+    position: absolute;
+    bottom: 53%;
+    left: -50%;
+    right: -50%;
+    div.jogadores {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        .caixa-mei {
+            width: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+
+            .pontuacao-flutuante {
+                width: 40px;
+                font-size: 9px;
+                color: #999;
+                background-color: #fff;
+                border-radius: 2px;
+                height: 15px;
+                line-height: 15px;
+                margin-bottom: 4px;
+                font-weight: bold;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+        }
+        .mei {
+            width: 35px;
+            height: 35px;
+            background-color: #fff;
+            border-radius: 50%;
+            background-position: center top;
+            background-size: cover;
+            border: 1px solid #fff;
+        }
+    }
+}
+
+.linha-4 {
+    width: 220px;
+    margin: 0 auto;
+    position: absolute;
+    bottom: 76%;
+    left: -50%;
+    right: -50%;
+    div.jogadores {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        .caixa-ata{
+            width: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+
+            .pontuacao-flutuante {
+                width: 40px;
+                font-size: 9px;
+                color: #999;
+                background-color: #fff;
+                border-radius: 2px;
+                height: 15px;
+                line-height: 15px;
+                margin-bottom: 4px;
+                font-weight: bold;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+        }
+        .ata {
+            width: 35px;
+            height: 35px;
+            background-color: #fff;
+            border-radius: 50%;
+            background-position: center top;
+            background-size: cover;
+            border: 1px solid #fff;
+        }
+    }
+}
+
+.caixa-ficha{
+    width: 95vw;
+    position: relative;
+    margin: 0 auto;
+    margin-top: 10px !important;
+
+    .jogadores{
+        width: 100%;
+        height: 60px;
+        border-radius: 5px;
+        background-color: #fff;
+        box-shadow: 0px 0px 2px 1px #00000025;
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        text-transform: uppercase;
+
+        .caixa-1{
+            width: 70%;
+            display: flex;
+            align-items: center;
+            .nome-posicao{
+                display:flex;
+                justify-content: flex-start;
+                flex-direction: column;
+                margin-left: 10px;
+                span.apelido{
+                    font-weight: bold;
+                    font-size: 12px;
+                    position: relative;
+                    top: 5px;
+                }
+                span{
+                    .posicao{
+                        font-size: 10px;
+                        font-weight: bold;
+                        color: #9b9b9b
+                    }
+    
+                    .clube{
+                        font-size: 10px;
+                        color: #9b9b9b;
+                    }
+                }
+            }
+        }
+        .caixa-2{
+            width: 30%;
+            .pontos{
+                width: 85%;
+                display: flex;
+                align-items: center;
+                justify-content: flex-end;
+            }
+        }
+    }
+}
+
+.pontos-positivo{
+    color: green;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.pontos-negativo{
+    color: red;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.pontos-nulo{
+    color: #9b9b9b;
+    font-size: 14px;
+    font-weight: bold;
 }

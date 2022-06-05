@@ -1,0 +1,40 @@
+<ion-content>
+  <ion-header [translucent]="true">
+    <ion-toolbar>
+      <div class="container-topo">
+        <div class="texto-dashboard">Parciais dos Jogadores</div>
+        <ion-icon name="close" routerLink="/home/escalacao"></ion-icon>
+      </div>
+    </ion-toolbar>
+  </ion-header>
+  <div class="caixa-pesquisar">
+    <div class="pesquisar">
+      <ion-icon name="search"></ion-icon>
+      <input type="text" placeholder="Nome do atleta" (input)="filtrarParciais($event)">
+    </div>
+  </div>
+  <div>
+    <br>
+    <div class="caixa-ficha" *ngFor="let dados of parciais">
+      <div class="jogadores">
+        <div class="caixa-1">
+          <img src="{{dados.foto}}" width="60">
+          <div class="nome-posicao">
+            <span class="apelido">{{dados.apelido}}</span>
+            <span><span class="posicao">{{dados.posicao_lista[0].abreviacao}}</span>&nbsp;<span
+                class="clube">{{dados.clube_lista[0].nome}}</span></span>
+          </div>
+        </div>
+        <div class="caixa-2">
+          <div class="pontos">
+            <span *ngIf="dados.pontuacao > 0" class="pontos-positivo">{{dados.pontuacao}}</span>
+            <span *ngIf="dados.pontuacao < 0" class="pontos-negativo">{{dados.pontuacao}}</span>
+            <span *ngIf="dados.pontuacao == 0" class="pontos-nulo">{{dados.pontuacao}}</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+  <br>
+</ion-content>

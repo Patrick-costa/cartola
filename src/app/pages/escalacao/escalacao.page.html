@@ -1,12 +1,12 @@
 <ion-content [fullscreen]="true">
-
   <ion-header [translucent]="true">
     <ion-toolbar>
       <ion-buttons slot="start">
         <ion-menu-button style="color: #fff"></ion-menu-button>
       </ion-buttons>
       <div class="container-topo">
-        <div class="texto-dashboard">Dashboard</div>
+        <div class="texto-dashboard">Escalação</div>
+        <ion-icon name="stats-chart" *ngIf="status['status_mercado'] == 2" style="margin-right: 20px;" routerLink="/parciais"></ion-icon>
         <ion-icon name="notifications"></ion-icon>
       </div>
     </ion-toolbar>
@@ -29,9 +29,19 @@
   </div>
 
   <div class="opcoes-topo" *ngIf="status['status_mercado'] == 2">
-    <div class="divisoria-topo" style="border: none;">
+    <div class="divisoria-topo">
+      <span class="preco-time">PREÇO DO TIME</span>
+      <span><span class="cs">C$</span><span class="valor">&nbsp;{{valorTime}}</span></span>
+    </div>
+    <div class="divisoria-topo">
       <span class="preco-time">MERCADO</span>
       <span class="valor"><b>FECHADO</b></span>
+    </div>
+    <div class="divisoria-topo">
+      <span class="cartoletas-topo">PARCIAL</span>
+      <span *ngIf="parcial > 0" class="pontos-positivo">{{parcial}}</span>
+      <span *ngIf="parcial < 0" class="pontos-negativo">{{parcial}}</span>
+      <span *ngIf="parcial == 0" class="pontos-nulo">{{parcial}}</span>
     </div>
   </div>
 
@@ -59,86 +69,293 @@
         </div>
       </div>
     </div>
-    <div class="cartola-campinho">
-      <div class="caixa-gol" *ngFor="let goleiro of gol">
-        <div class="pontuacao-flutuante">
-          <span>C$ {{goleiro.preco_num}}</span>
-        </div>
-        <div class="gol" style="background-image: url('{{goleiro.foto}}')">
-        </div>
-        <div class="label-goleiro">
-          <span>
-            {{goleiro.apelido_abreviado}}
-          </span>
+    <div class="cartola-campinho" *ngIf="visualizarCampo">
+      <div class="linha-1">
+        <div class="jogadores">
+          <div class="caixa-tec">
+            <div class="pontuacao-flutuante" *ngIf="tec.preco_num && status['status_mercado'] == 1">
+              <span>C$ {{tec.preco_num}}</span>
+            </div>
+            <div class="pontuacao-flutuante" *ngIf="status['status_mercado'] == 2">
+              <span>{{tec.pontos_num}}</span>
+            </div>
+            <div class="tec" style="background-image: url('{{tec.foto}}')" (click)="modificarJogador(tec)">
+            </div>
+            <div class="label-goleiro">
+              <span>
+                {{tec.apelido_abreviado}}
+              </span>
+            </div>
+          </div>
+          <div class="caixa-gol">
+            <div class="pontuacao-flutuante" *ngIf="gol.preco_num && status['status_mercado'] == 1">
+              <span>C$ {{gol.preco_num}}</span>
+            </div>
+            <div class="pontuacao-flutuante" *ngIf="status['status_mercado'] == 2">
+              <span>{{gol.pontos_num}}</span>
+            </div>
+            <div class="gol" style="background-image: url('{{gol.foto}}')" (click)="modificarJogador(gol)">
+
+            </div>
+            <div class="label-goleiro">
+              <span>
+                {{gol.apelido_abreviado}}
+              </span>
+            </div>
+          </div>
+
         </div>
       </div>
+      <div class="linha-2">
+        <div class="jogadores">
+          <div class="caixa-lat">
+            <div class="pontuacao-flutuante" *ngIf="lat1.preco_num && status['status_mercado'] == 1">
+              <span>C$ {{lat1.preco_num}}</span>
+            </div>
+            <div class="pontuacao-flutuante" *ngIf="status['status_mercado'] == 2">
+              <span>{{lat1.pontos_num}}</span>
+            </div>
+            <div class="lat" style="background-image: url('{{lat1.foto}}')" (click)="modificarJogador(lat1)">
 
-      <div class="caixa-zag{{i}}" *ngFor="let zagueiro of zag, let i = index">
-        <div class="pontuacao-flutuante">
-          <span>C$ {{zagueiro.preco_num}}</span>
-        </div>
-        <div class="zag" style="background-image: url('{{zagueiro.foto}}')">
-        </div>
-        <div class="label-zagueiro">
-          <span>
-            {{zagueiro.apelido_abreviado}}
-          </span>
+            </div>
+            <div class="label-lateral">
+              <span>
+                {{lat1.apelido_abreviado}}
+              </span>
+            </div>
+          </div>
+          <div class="caixa-zag">
+            <div class="pontuacao-flutuante" *ngIf="zag1.preco_num && status['status_mercado'] == 1">
+              <span>C$ {{zag1.preco_num}}</span>
+            </div>
+            <div class="pontuacao-flutuante" *ngIf="status['status_mercado'] == 2">
+              <span>{{zag1.pontos_num}}</span>
+            </div>
+            <div class="zag" style="background-image: url('{{zag1.foto}}')" (click)="modificarJogador(zag1)">
+
+            </div>
+            <div class="label-zagueiro">
+              <span>
+                {{zag1.apelido_abreviado}}
+              </span>
+            </div>
+          </div>
+          <div class="caixa-zag">
+            <div class="pontuacao-flutuante" *ngIf="zag2.preco_num && status['status_mercado'] == 1">
+              <span>C$ {{zag2.preco_num}}</span>
+            </div>
+            <div class="pontuacao-flutuante" *ngIf="status['status_mercado'] == 2">
+              <span>{{zag2.pontos_num}}</span>
+            </div>
+            <div class="zag" style="background-image: url('{{zag2.foto}}')" (click)="modificarJogador(zag2)">
+
+            </div>
+            <div class="label-zagueiro">
+              <span>
+                {{zag2.apelido_abreviado}}
+              </span>
+            </div>
+          </div>
+          <div class="caixa-lat">
+            <div class="pontuacao-flutuante" *ngIf="lat2.preco_num && status['status_mercado'] == 1">
+              <span>C$ {{lat2.preco_num}}</span>
+            </div>
+            <div class="pontuacao-flutuante" *ngIf="status['status_mercado'] == 2">
+              <span>{{lat2.pontos_num}}</span>
+            </div>
+            <div class="lat" style="background-image: url('{{lat2.foto}}')" (click)="modificarJogador(lat2)">
+
+            </div>
+            <div class="label-lateral">
+              <span>
+                {{lat2.apelido_abreviado}}
+              </span>
+            </div>
+          </div>
         </div>
       </div>
+      <div class="linha-3">
+        <div class="jogadores">
+          <div class="caixa-mei">
+            <div class="pontuacao-flutuante" *ngIf="mei1.preco_num && status['status_mercado'] == 1">
+              <span>C$ {{mei1.preco_num}}</span>
+            </div>
+            <div class="pontuacao-flutuante" *ngIf="status['status_mercado'] == 2">
+              <span>{{mei1.pontos_num}}</span>
+            </div>
+            <div class="mei" style="background-image: url('{{mei1.foto}}')" (click)="modificarJogador(mei1)">
 
-      <div class="caixa-lat{{i}}" *ngFor="let lateral of lat, let i = index">
-        <div class="pontuacao-flutuante">
-          <span>C$ {{lateral.preco_num}}</span>
-        </div>
-        <div class="lat" style="background-image: url('{{lateral.foto}}')">
-        </div>
-        <div class="label-lateral">
-          <span>
-            {{lateral.apelido_abreviado}}
-          </span>
+            </div>
+            <div class="label-meia">
+              <span>
+                {{mei1.apelido_abreviado}}
+              </span>
+            </div>
+          </div>
+          <div class="caixa-mei">
+            <div class="pontuacao-flutuante" *ngIf="mei2.preco_num && status['status_mercado'] == 1">
+              <span>C$ {{mei2.preco_num}}</span>
+            </div>
+            <div class="pontuacao-flutuante" *ngIf="status['status_mercado'] == 2">
+              <span>{{mei2.pontos_num}}</span>
+            </div>
+            <div class="mei" style="background-image: url('{{mei2.foto}}')" (click)="modificarJogador(mei2)">
+
+            </div>
+            <div class="label-meia">
+              <span>
+                {{mei2.apelido_abreviado}}
+              </span>
+            </div>
+          </div>
+          <div class="caixa-mei">
+            <div class="pontuacao-flutuante" *ngIf="mei3.preco_num && status['status_mercado'] == 1">
+              <span>C$ {{mei3.preco_num}}</span>
+            </div>
+            <div class="pontuacao-flutuante" *ngIf="status['status_mercado'] == 2">
+              <span>{{mei3.pontos_num}}</span>
+            </div>
+            <div class="mei" style="background-image: url('{{mei3.foto}}')" (click)="modificarJogador(mei3)">
+
+            </div>
+            <div class="label-meia">
+              <span>
+                {{mei3.apelido_abreviado}}
+              </span>
+            </div>
+          </div>
         </div>
       </div>
+      <div class="linha-4">
+        <div class="jogadores">
+          <div class="caixa-ata">
+            <div class="pontuacao-flutuante" *ngIf="ata1.preco_num && status['status_mercado'] == 1">
+              <span>C$ {{ata1.preco_num}}</span>
+            </div>
+            <div class="pontuacao-flutuante" *ngIf="status['status_mercado'] == 2">
+              <span>{{ata1.pontos_num}}</span>
+            </div>
+            <div class="ata" style="background-image: url('{{ata1.foto}}')" (click)="modificarJogador(ata1)">
 
-      <div class="caixa-mei{{i}}" *ngFor="let meia of mei, let i = index">
-        <div class="pontuacao-flutuante">
-          <span>C$ {{meia.preco_num}}</span>
-        </div>
-        <div class="mei" style="background-image: url('{{meia.foto}}')">
-        </div>
-        <div class="label-meia">
-          <span>
-            {{meia.apelido_abreviado}}
-          </span>
+            </div>
+            <div class="label-atacante">
+              <span>
+                {{ata1.apelido_abreviado}}
+              </span>
+            </div>
+          </div>
+
+          <div class="caixa-ata">
+            <div class="pontuacao-flutuante" *ngIf="ata2.preco_num && status['status_mercado'] == 1">
+              <span>C$ {{ata2.preco_num}}</span>
+            </div>
+            <div class="pontuacao-flutuante" *ngIf="status['status_mercado'] == 2">
+              <span>{{ata2.pontos_num}}</span>
+            </div>
+            <div class="ata" style="background-image: url('{{ata2.foto}}')" (click)="modificarJogador(ata2)">
+
+            </div>
+            <div class="label-atacante">
+              <span>
+                {{ata2.apelido_abreviado}}
+              </span>
+            </div>
+          </div>
+
+          <div class="caixa-ata">
+            <div class="pontuacao-flutuante" *ngIf="ata3.preco_num && status['status_mercado'] == 1">
+              <span>C$ {{ata3.preco_num}}</span>
+            </div>
+            <div class="pontuacao-flutuante" *ngIf="status['status_mercado'] == 2">
+              <span>{{ata3.pontos_num}}</span>
+            </div>
+            <div class="ata" style="background-image: url('{{ata3.foto}}')" (click)="modificarJogador(ata3)">
+
+            </div>
+            <div class="label-atacante">
+              <span>
+                {{ata3.apelido_abreviado}}
+              </span>
+            </div>
+          </div>
         </div>
       </div>
+    </div>
 
-      <div class="caixa-ata{{i}}" *ngFor="let atacante of ata, let i = index">
-        <div class="pontuacao-flutuante">
-          <span>C$ {{atacante.preco_num}}</span>
-        </div>
-        <div class="ata" style="background-image: url('{{atacante.foto}}')">
-        </div>
-        <div class="label-atacante">
-          <span>
-            {{atacante.apelido_abreviado}}
-          </span>
-        </div>
-      </div>
-
-      <div class="caixa-tec" *ngFor="let tecnico of tec">
-        <div class="pontuacao-flutuante">
-          <span>C$ {{tecnico.preco_num}}</span>
-        </div>
-        <div class="tec" style="background-image: url('{{tecnico.foto}}')">
-        </div>
-        <div class="label-atacante">
-          <span>
-            {{tecnico.apelido_abreviado}}
-          </span>
+    <div *ngIf="visualizarFicha">
+      <br>
+      <div class="caixa-ficha" *ngFor="let dados of listaJogadoresFicha">
+        <div class="jogadores">
+          <div class="caixa-1">
+            <img src="{{dados.foto}}" width="60">
+            <div class="nome-posicao">
+              <span class="apelido">{{dados.apelido}}</span>
+              <span><span class="posicao">{{dados.posicao_lista[0].abreviacao}}</span>&nbsp;<span
+                  class="clube">{{dados.clube_lista[0].nome}}</span></span>
+            </div>
+          </div>
+          <div class="caixa-2">
+            <div class="pontos">
+              <span *ngIf="dados.pontos_num > 0" class="pontos-positivo">{{dados.pontos_num}}</span>
+              <span *ngIf="dados.pontos_num < 0" class="pontos-negativo">{{dados.pontos_num}}</span>
+              <span *ngIf="dados.pontos_num == 0" class="pontos-nulo">{{dados.pontos_num}}</span>
+            </div>
+          </div>
         </div>
       </div>
     </div>
   </div>
   <br>
 
+
+  <button (click)="testeEnviar()">Enviar</button>
 </ion-content>
+
+<div class="bg-modificar" #mexerJogador>
+  <div class="modificar-jogador" *ngFor="let dados of modificaJogador">
+    <div class="caixa-topo">
+      <div class="status">
+        <span class='status'>Status:</span>
+        <span class="{{dados.status_lista[0].slug}}">{{dados.status_lista[0].nome}}</span>
+      </div>
+      <div class="atleta">
+        <div class="foto" style="background-image: url('{{dados.foto}}');">
+        </div>
+        <div class="nome">
+          {{dados.apelido_abreviado}}
+        </div>
+        <span><span class='posicao'>{{dados.posicao_lista[0].abreviacao}}</span>&nbsp;<span
+            class="time">{{dados.clube_lista[0].nome}}</span></span>
+        <div class="preco">
+          C$&nbsp;{{dados.preco_num}}
+        </div>
+        <div class="escudo">
+          <img width='25' src="{{dados.clube_lista[0].escudos['30x30']}}">
+        </div>
+      </div>
+      <div (click)="fecharModal()">Fechar</div>
+    </div>
+    <div class="detalhes">
+      <div class="detalhe">
+        <span class="texto-detalhe">Ultima pontuação:</span>
+        <span class="array-detalhe">0</span>
+      </div>
+      <div class="detalhe" style="border-top: 1px solid #e9e9e9">
+        <span class="texto-detalhe">Pontuação média:</span>
+        <span class="array-detalhe">{{dados.media_num}}</span>
+      </div>
+      <div class="detalhe" style="border-top: 1px solid #e9e9e9">
+        <span class="texto-detalhe">Variação de preço C$:</span>
+        <span class="positivo" *ngIf="dados.variacao_num > 0">{{dados.variacao_num}}</span>
+        <span class="negativo" *ngIf="dados.variacao_num < 0">{{dados.variacao_num}}</span>
+        <span class="nulo" *ngIf="dados.variacao_num == 0">{{dados.variacao_num}}</span>
+      </div>
+      <div class="detalhe" style="border-top: 1px solid #e9e9e9">
+        <span class="texto-detalhe">Minimo para valorizar C$:</span>
+        <span class="array-detalhe">{{dados.minimo_para_valorizar}}</span>
+      </div>
+      <button class="capitao">TORNAR CAPITÃO</button>
+      <button class="vender" (click)='venderJogador(dados.atleta_id)'>VENDER JOGADOR</button>
+    </div>
+  </div>
+</div>
