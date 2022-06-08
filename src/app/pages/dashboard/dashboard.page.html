@@ -1,16 +1,13 @@
-<ion-content [fullscreen]="true">
-
-  <ion-header [translucent]="true">
-    <ion-toolbar>
-      <ion-buttons slot="start">
-        <ion-menu-button style="color: #fff"></ion-menu-button>
-      </ion-buttons>
-      <div class="container-topo">
-        <div class="texto-dashboard">Dashboard</div>
-        <ion-icon name="notifications"></ion-icon>
-      </div>
-    </ion-toolbar>
-  </ion-header>
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button style="color: #fff"></ion-menu-button>
+    </ion-buttons>
+    <div class="container-topo">
+      <div class="texto-dashboard">Dashboard</div>
+      <ion-icon name="notifications"></ion-icon>
+    </div>
+  </ion-toolbar>
   <!-- 21/05 - 16:00 -->
   <div class="opcoes-topo" *ngIf="status['status_mercado'] == 1">
     <div class="divisoria-topo">
@@ -19,21 +16,24 @@
     </div>
     <div class="divisoria-topo">
       <span class="mercado-fechamento">MERCADO FECHA EM</span>
-      <span class="horario-fechamento">{{dataStatus[0]}}/{{dataStatus[1]}} - {{dataStatus[3]}}:{{dataStatus[4] | date:
-        'mm'}} <ion-icon name="alert-circle"></ion-icon></span>
+      <!-- <span class="horario-fechamento">{{dataStatus[0]}}/{{dataStatus[1]}} - {{dataStatus[3]}}:{{dataStatus[4] | date:
+        'mm'}} <ion-icon name="alert-circle"></ion-icon></span> -->
+        <span class="horario-fechamento">{{dataStatus}}&nbsp;<ion-icon name="alert-circle"></ion-icon></span>
     </div>
     <div class="divisoria-topo">
       <span class="cartoletas-topo">VOCÊ AINDA TEM</span>
       <span><span class="cs">C$</span><span class="valor">&nbsp;{{cartoletasRestantes}}</span></span>
     </div>
   </div>
-
+  
   <div class="opcoes-topo" *ngIf="status['status_mercado'] == 2">
     <div class="divisoria-topo" style="border: none;">
       <span class="preco-time">MERCADO</span>
       <span class="valor"><b>FECHADO</b></span>
     </div>
   </div>
+</ion-header>
+<ion-content [fullscreen]="true">
 
   <div class="corpo">
     <div class="cartola-pro">
@@ -66,7 +66,7 @@
             <span class="nivel-time">Nivel Inicial</span></span>
         </div>
       </div>
-      <div class="caixa-dados">
+      <div class="caixa-dados" *ngIf="status['status_mercado'] == 2">
         <div class="jog-pontuados">
           <span class="titulo-caixa-dados">
             JOG. PONTUADOS
@@ -84,6 +84,36 @@
           </span>
           <span class="texto-caixa-dados" *ngIf="pontuacao != 0">
             {{pontuacao}}
+          </span>
+        </div>
+        <div class="parcial-total">
+          <span class="titulo-caixa-dados">
+            PARCIAL TOTAL
+          </span>
+          <span class="texto-caixa-dados" *ngIf="usuario['pontos_campeonato'] == null">
+            0.00
+          </span>
+          <span class="texto-caixa-dados" *ngIf="usuario['pontos_campeonato'] != null">
+            {{usuario['pontos_campeonato']}}
+          </span>
+        </div>
+      </div>
+
+      <div class="caixa-dados" *ngIf="status['status_mercado'] == 1">
+        <div class="jog-pontuados">
+          <span class="titulo-caixa-dados">
+            PATRIMÔNIO
+          </span>
+          <span class="texto-caixa-dados">
+            C$ {{patrimonio}}
+          </span>
+        </div>
+        <div class="parcial-rodada">
+          <span class="titulo-caixa-dados">
+            ÚLTIMA PONTUAÇÃO
+          </span>
+          <span class="texto-caixa-dados">
+            {{ultPontuacao}}
           </span>
         </div>
         <div class="parcial-total">
@@ -160,7 +190,7 @@
       <div class="jogos" *ngFor="let dados of confrontos">
         <div class="caixa-jogos">
           <div class="local">
-            {{dados.data | date: 'EEE mm/d/y' }} <span class="bola">&nbsp;&nbsp;•&nbsp;&nbsp;</span> {{dados.local}}
+            {{dados.data | date: 'EEE dd/MM/y' }} <span class="bola">&nbsp;&nbsp;•&nbsp;&nbsp;</span> {{dados.local}}
             <span class="bola">&nbsp;&nbsp;•&nbsp;&nbsp;</span> {{dados.data | date: 'H:mm'}}
           </div>
           <div class="confrontos">
@@ -207,3 +237,7 @@
 
 
 </ion-content>
+
+<div class="splash" #splash>
+  <div class="loader" #loader></div>
+</div>

@@ -10,13 +10,13 @@ import { ModalController } from '@ionic/angular';
 export class EscalacaoPage implements OnInit {
 
   @ViewChild('opcao2', { read: ElementRef }) el2!: ElementRef;
-
   @ViewChild('opcao1', { read: ElementRef }) el1!: ElementRef;
-
+  @ViewChild('splash', { read: ElementRef }) splash!: ElementRef;
+  @ViewChild('loader', { read: ElementRef }) loader!: ElementRef;
   constructor(private http: HttpClient, private modalController: ModalController) { }
 
   status = {};
-  dataStatus = [];
+  dataStatus: any;
   token = "1d05015f5c1fe8d822740a1bb678e0b2c674b636938664e6b774d384c6541554d4e644a417243495267436e48666d3049376a6678503233743879544371394a516a634251706378576d4747654d5772355f7265326c3875716277395437505938477369674a513d3d3a303a7061747269636b32335f636f7374612e32303135";
   usuario = {};
   valorTime;
@@ -146,9 +146,6 @@ export class EscalacaoPage implements OnInit {
         'X-GLB-Token': this.token,
       }
     );
-    // headers.append('X-GLB-Token', this.token);
-    // headers.append('Content-Type', 'application/json');
-    // headers.append('User-Agent', 'MyApp V1.0 (iOS)');
     this.http.post('https://cors-anywhere.herokuapp.com/https://api.cartola.globo.com/auth/time/salvar', this.teste, { headers: headers }).subscribe(
       res => {
         console.log(res);
@@ -479,6 +476,8 @@ export class EscalacaoPage implements OnInit {
           console.log(this.listaJogadoresFicha);
         }
 
+
+        this.parcial = 0;
         for(var i = 0; i < this.listaJogadoresFicha.length; i++){
           if(this.listaJogadoresFicha[i].pontos_num != "-"){
             this.listaJogadoresFicha[i].pontos_num == parseFloat(this.listaJogadoresFicha[i].pontos_num);
@@ -487,8 +486,10 @@ export class EscalacaoPage implements OnInit {
         }
         this.parcial = Math.round(this.parcial * 100)/100;
       }, 100);
-    }, 3000);
-
+      setTimeout(() => {        
+        this.splash.nativeElement.classList.add('desabilitar-splash');
+      }, 500);
+    }, 3500);
   }
 
 
@@ -496,7 +497,12 @@ export class EscalacaoPage implements OnInit {
   carregarStatus() {
     this.http.get('https://api.cartola.globo.com/mercado/status').subscribe(x => {
       this.status = JSON.parse(JSON.stringify(x));
-      this.dataStatus = Object.values(x['fechamento']);
+      let timestamp = x['fechamento']['timestamp'];
+      var date = new Date(timestamp*1000).toLocaleDateString("pt-BR").replace('/2022','');
+      var hora = new Date(timestamp*1000).getHours()+":"+new Date(timestamp*1000).getMinutes();
+      this.dataStatus = date+' - '+hora;
+      console.log(this.status)
+      console.log(this.dataStatus);
     })
   }
 

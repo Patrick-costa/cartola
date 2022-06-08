@@ -1,6 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { findReadVarNames } from '@angular/compiler/src/output/output_ast';
 
 @Component({
   selector: 'app-dashboard',
@@ -10,12 +9,14 @@ import { findReadVarNames } from '@angular/compiler/src/output/output_ast';
 export class DashboardPage implements OnInit {
 
   constructor(private http: HttpClient) { }
-
+  
+  @ViewChild('splash', { read: ElementRef }) splash!: ElementRef;
+  @ViewChild('loader', { read: ElementRef }) loader!: ElementRef;
   time: any;
   resultado = [];
   confrontos = [];
   status = {};
-  dataStatus = [];
+  dataStatus: any;
   token = "1d05015f5c1fe8d822740a1bb678e0b2c674b636938664e6b774d384c6541554d4e644a417243495267436e48666d3049376a6678503233743879544371394a516a634251706378576d4747654d5772355f7265326c3875716277395437505938477369674a513d3d3a303a7061747269636b32335f636f7374612e32303135";
   usuario = {};
   usuarios_time = {};
@@ -31,6 +32,9 @@ export class DashboardPage implements OnInit {
   pontuacao = 0;
   jogadoresPontuados = 0;
   capitao;
+  patrimonio;
+  ultPontuacao;
+
   ngOnInit() {
     this.carregarTime();
     this.carregarJogos();
@@ -47,8 +51,10 @@ export class DashboardPage implements OnInit {
       console.log(x);
       this.usuario = x;
       this.capitao = this.usuario['capitao_id'];
-      this.usuario['pontos'] = Math.round((this.usuario['pontos']) * 100)/100;
+      this.patrimonio = this.usuario['patrimonio'];
+      this.usuario['pontos'] = Math.round((this.usuario['pontos']) * 1000)/1000;
       this.usuario['pontos_campeonato'] = Math.round((this.usuario['pontos_campeonato']) *100)/100;
+      this.ultPontuacao = this.usuario['pontos'];
       this.usuarios_time = x['time'];
       this.fotoPerfil = x['time'].foto_perfil;
       this.valorTime = Math.round(this.usuario['valor_time'] * 100) / 100;
@@ -93,6 +99,9 @@ export class DashboardPage implements OnInit {
       console.log(array)
       this.jogadoresPontuados = array.length;
     }
+    setTimeout(() => {        
+      this.splash.nativeElement.classList.add('desabilitar-splash');
+    }, 500);
     }, 3500);
   }
 
@@ -103,6 +112,7 @@ export class DashboardPage implements OnInit {
 
       this.destaques.forEach(y => {
         y.Atleta.foto = y.Atleta.foto.replace('FORMATO', '140x140');
+        y.escalacoes = (y.escalacoes).toLocaleString("pt-BR", { minimumFractionDigits: 2}).replace(/,00$/, '');
       })
 
       this.mostrarTodosTitulares = false;
@@ -118,6 +128,7 @@ export class DashboardPage implements OnInit {
 
       this.destaquesReservas.forEach(y => {
         y.Atleta.foto = y.Atleta.foto.replace('FORMATO', '140x140');
+        y.escalacoes = (y.escalacoes).toLocaleString("pt-BR", { minimumFractionDigits: 2}).replace(/,00$/, '');
       });
       this.mostrarTodosReservas = false;
       console.log(this.destaquesReservas);
@@ -130,6 +141,7 @@ export class DashboardPage implements OnInit {
 
       this.destaques.forEach(y => {
         y.Atleta.foto = y.Atleta.foto.replace('FORMATO', '140x140');
+        y.escalacoes = (y.escalacoes).toLocaleString("pt-BR", { minimumFractionDigits: 2}).replace(/,00$/, '');
       });
 
     });
@@ -143,6 +155,7 @@ export class DashboardPage implements OnInit {
 
       this.destaquesReservas.forEach(y => {
         y.Atleta.foto = y.Atleta.foto.replace('FORMATO', '140x140');
+        y.escalacoes = (y.escalacoes).toLocaleString("pt-BR", { minimumFractionDigits: 2}).replace(/,00$/, '');
       });
 
     })
@@ -153,7 +166,10 @@ export class DashboardPage implements OnInit {
   carregarStatus() {
     this.http.get('https://api.cartola.globo.com/mercado/status').subscribe(x => {
       this.status = JSON.parse(JSON.stringify(x));
-      this.dataStatus = Object.values(x['fechamento']);
+      let timestamp = x['fechamento']['timestamp'];
+      var date = new Date(timestamp*1000).toLocaleDateString("pt-BR").replace('/2022','');
+      var hora = new Date(timestamp*1000).getHours()+":"+new Date(timestamp*1000).getMinutes();
+      this.dataStatus = date+' - '+hora;
       console.log(this.status)
       console.log(this.dataStatus);
     })

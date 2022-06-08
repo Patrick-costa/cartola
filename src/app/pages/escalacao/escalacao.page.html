@@ -1,16 +1,14 @@
-<ion-content [fullscreen]="true">
-  <ion-header [translucent]="true">
-    <ion-toolbar>
-      <ion-buttons slot="start">
-        <ion-menu-button style="color: #fff"></ion-menu-button>
-      </ion-buttons>
-      <div class="container-topo">
-        <div class="texto-dashboard">Escalação</div>
-        <ion-icon name="stats-chart" *ngIf="status['status_mercado'] == 2" style="margin-right: 20px;" routerLink="/parciais"></ion-icon>
-        <ion-icon name="notifications"></ion-icon>
-      </div>
-    </ion-toolbar>
-  </ion-header>
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button style="color: #fff"></ion-menu-button>
+    </ion-buttons>
+    <div class="container-topo">
+      <div class="texto-dashboard">Escalação</div>
+      <ion-icon name="stats-chart" *ngIf="status['status_mercado'] == 2" style="margin-right: 20px;" routerLink="/parciais"></ion-icon>
+      <ion-icon name="notifications"></ion-icon>
+    </div>
+  </ion-toolbar>
   <!-- 21/05 - 16:00 -->
   <div class="opcoes-topo" *ngIf="status['status_mercado'] == 1">
     <div class="divisoria-topo">
@@ -19,8 +17,7 @@
     </div>
     <div class="divisoria-topo">
       <span class="mercado-fechamento">MERCADO FECHA EM</span>
-      <span class="horario-fechamento">{{dataStatus[0]}}/{{dataStatus[1]}} - {{dataStatus[3]}}:{{dataStatus[4] | date:
-        'mm'}} <ion-icon name="alert-circle"></ion-icon></span>
+      <span class="horario-fechamento">{{dataStatus}}&nbsp;<ion-icon name="alert-circle"></ion-icon></span>
     </div>
     <div class="divisoria-topo">
       <span class="cartoletas-topo">VOCÊ AINDA TEM</span>
@@ -44,6 +41,8 @@
       <span *ngIf="parcial == 0" class="pontos-nulo">{{parcial}}</span>
     </div>
   </div>
+</ion-header>
+<ion-content [fullscreen]="true">
 
   <div class="corpo">
     <div class="caixa-topo">
@@ -51,13 +50,13 @@
         <div class="dropdown-select">
           <span class="select">{{esquemaAtual}} <ion-icon name="chevron-down-outline"></ion-icon></span>
         </div>
-        <div class="caixa-dropdown">
+        <!-- <div class="caixa-dropdown">
           <div class="dropdown-list" *ngFor="let dados of esquemas">
             <div class="dropdown-list_item" (click)="definirEsquema(dados.nome)">
               <span>{{dados.nome}}</span>
             </div>
           </div>
-        </div>
+        </div> -->
       </div>
       <div class="opcoes-time">
         <div class="opcao active" (click)="opcaoCampo()" #opcao1>
@@ -299,6 +298,7 @@
               <span *ngIf="dados.pontos_num > 0" class="pontos-positivo">{{dados.pontos_num}}</span>
               <span *ngIf="dados.pontos_num < 0" class="pontos-negativo">{{dados.pontos_num}}</span>
               <span *ngIf="dados.pontos_num == 0" class="pontos-nulo">{{dados.pontos_num}}</span>
+              <span class="nulo" *ngIf="dados.pontos_num == '-'">{{dados.pontos_num}}</span>
             </div>
           </div>
         </div>
@@ -333,7 +333,7 @@
           <img width='25' src="{{dados.clube_lista[0].escudos['30x30']}}">
         </div>
       </div>
-      <div (click)="fecharModal()">Fechar</div>
+      <div><ion-icon name="close" (click)="fecharModal()"></ion-icon></div>
     </div>
     <div class="detalhes">
       <div class="detalhe">
@@ -349,6 +349,7 @@
         <span class="positivo" *ngIf="dados.variacao_num > 0">{{dados.variacao_num}}</span>
         <span class="negativo" *ngIf="dados.variacao_num < 0">{{dados.variacao_num}}</span>
         <span class="nulo" *ngIf="dados.variacao_num == 0">{{dados.variacao_num}}</span>
+
       </div>
       <div class="detalhe" style="border-top: 1px solid #e9e9e9">
         <span class="texto-detalhe">Minimo para valorizar C$:</span>
@@ -358,4 +359,8 @@
       <button class="vender" (click)='venderJogador(dados.atleta_id)'>VENDER JOGADOR</button>
     </div>
   </div>
+</div>
+
+<div class="splash" #splash>
+  <div class="loader" #loader></div>
 </div>

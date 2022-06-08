@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Lato:wght@100;400&');
+@import url('https://fonts.googleapis.com/css2?family=Glegoo&family=Roboto+Slab:wght@700;900&display=swap');
 
 ion-toolbar{
   --background: #ff7400;
@@ -25,61 +25,64 @@ ion-toolbar{
   }
 }
 
-ion-content{
-  --background: #e9e9e9;
-
-  div.opcoes-topo{
-    height: 48px;
-    width: 100%;
-    background-color: #fff;
-    box-shadow: 0px 0px 4px 1px #00000025;
+div.opcoes-topo{
+  height: 48px;
+  width: 100%;
+  background-color: #fff;
+  box-shadow: 0px 0px 4px 1px #00000025;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  div.divisoria-topo{
+    width: calc(100%/3);
+    padding: -10px;
+    border-right: 1px solid #e9e9e9;
     display: flex;
     align-items: center;
+    flex-direction: column;
     justify-content: center;
 
-    div.divisoria-topo{
-      width: calc(100%/3);
-      padding: -10px;
-      border-right: 1px solid #e9e9e9;
-      display: flex;
-      align-items: center;
-      flex-direction: column;
-      justify-content: center;
+    .preco-time{
+      font-size: 10px;
+      color: #9b9b9b;
+      
+    }
 
-      .preco-time{
-        font-size: 10px;
-        color: #9b9b9b;
-      }
+    .cs{
+      font-size: 10px;
+      color: #9b9b9b;
+      font-family: 'Roboto Slab', serif;
+    }
 
-      .cs{
-        font-size: 10px;
-        color: #9b9b9b;
-      }
+    .mercado-fechamento{
+      font-size: 10px;
+      color: #9b9b9b;
+    }
 
-      .mercado-fechamento{
-        font-size: 10px;
-        color: #9b9b9b;
-      }
-
-      .horario-fechamento{
-        font-size: 12px;
-        font-weight: bold;
-        ion-icon{
-          color: #9b9b9b;
-        }
-      }
-
-      .valor{
-        font-weight: bold;
-      }
-
-      .cartoletas-topo{
-        font-size: 10px;
+    .horario-fechamento{
+      font-size: 13px;
+      font-family: 'Roboto Slab', serif;
+      ion-icon{
         color: #9b9b9b;
       }
     }
 
+    .valor{
+      font-weight: bold;
+      font-family: 'Roboto Slab', serif;
+    }
+
+    .cartoletas-topo{
+      font-size: 10px;
+      color: #9b9b9b;
+    }
   }
+
+}
+
+ion-content{
+  --background: #e9e9e9;
+
 
   div.corpo{
     width: 92%;
@@ -229,6 +232,7 @@ ion-content{
         span.texto-caixa-dados{
           font-size: 15px;
           font-weight: bold;
+          font-family: 'Roboto Slab', serif;
         }
 
         div.jog-pontuados{
@@ -301,6 +305,7 @@ ion-content{
             width: 30px;
             height: 30px;
             display: flex;
+            font-family: 'Roboto Slab', serif;
             align-items: center;
             justify-content: center;
             font-weight: bold;
@@ -330,6 +335,7 @@ ion-content{
             span.apelido{
               font-weight: bold;
               font-size: 14px;
+              
             }
           
             span span.posicao{
@@ -352,6 +358,7 @@ ion-content{
             span span.num-cartoleiros{
               font-weight: 600;
               font-size: 12px;
+              font-family: 'Roboto Slab', serif;
             }
 
           }
@@ -526,3 +533,31 @@ ion-content{
   }
 }
 
+
+.splash{
+  height: 100vh;
+  width: 100%;
+  background: #e9e9e9;
+  position: absolute;
+  top: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  .loader {
+    border: 8px solid #f3f3f3; /* Light grey */
+    border-top: 8px solid #ff7400; /* Blue */
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    animation: spin 2s linear infinite;
+  }
+  
+  @keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+}
+
+.desabilitar-splash{
+  display: none !important;
+}
