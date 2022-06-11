@@ -76,7 +76,9 @@
               <span>C$ {{tec.preco_num}}</span>
             </div>
             <div class="pontuacao-flutuante" *ngIf="status['status_mercado'] == 2">
-              <span>{{tec.pontos_num}}</span>
+              <span class="positivo" *ngIf="tec.pontos_num > 0">{{tec.pontos_num}}</span>
+              <span class="negativo" *ngIf="tec.pontos_num < 0">{{tec.pontos_num}}</span>
+              <span class="negativo" *ngIf="tec.pontos_num == 0">{{tec.pontos_num}}</span>
             </div>
             <div class="tec" style="background-image: url('{{tec.foto}}')" (click)="modificarJogador(tec)">
             </div>
@@ -91,9 +93,11 @@
               <span>C$ {{gol.preco_num}}</span>
             </div>
             <div class="pontuacao-flutuante" *ngIf="status['status_mercado'] == 2">
-              <span>{{gol.pontos_num}}</span>
+              <span class="positivo" *ngIf="gol.pontos_num > 0">{{gol.pontos_num}}</span>
+              <span class="negativo" *ngIf="gol.pontos_num < 0">{{gol.pontos_num}}</span>
+              <span class="nulo" *ngIf="gol.pontos_num == 0">{{gol.pontos_num}}</span>
             </div>
-            <div class="gol" style="background-image: url('{{gol.foto}}')" (click)="modificarJogador(gol)">
+            <div class="gol {{gol.status_lista[0].slug}}" style="background-image: url('{{gol.foto}}')" (click)="modificarJogador(gol)">
 
             </div>
             <div class="label-goleiro">
@@ -112,9 +116,11 @@
               <span>C$ {{lat1.preco_num}}</span>
             </div>
             <div class="pontuacao-flutuante" *ngIf="status['status_mercado'] == 2">
-              <span>{{lat1.pontos_num}}</span>
+              <span class="positivo" *ngIf="lat1.pontos_num > 0">{{lat1.pontos_num}}</span>
+              <span class="negativo" *ngIf="lat1.pontos_num < 0">{{lat1.pontos_num}}</span>
+              <span class="nulo" *ngIf="lat1.pontos_num == 0">{{lat1.pontos_num}}</span>
             </div>
-            <div class="lat" style="background-image: url('{{lat1.foto}}')" (click)="modificarJogador(lat1)">
+            <div class="lat {{lat1.status_lista[0].slug}}" style="background-image: url('{{lat1.foto}}')" (click)="modificarJogador(lat1)">
 
             </div>
             <div class="label-lateral">
@@ -128,11 +134,13 @@
               <span>C$ {{zag1.preco_num}}</span>
             </div>
             <div class="pontuacao-flutuante" *ngIf="status['status_mercado'] == 2">
-              <span>{{zag1.pontos_num}}</span>
+              <span class="positivo" *ngIf="zag1.pontos_num > 0">{{zag1.pontos_num}}</span>
+              <span class="negativo" *ngIf="zag1.pontos_num < 0">{{zag1.pontos_num}}</span>
+              <span class="nulo" *ngIf="zag1.pontos_num == 0">{{zag1.pontos_num}}</span>
             </div>
-            <div class="zag" style="background-image: url('{{zag1.foto}}')" (click)="modificarJogador(zag1)">
+            <div class="zag {{zag1.status_lista[0].slug}}" style="background-image: url('{{zag1.foto}}')" (click)="modificarJogador(zag1)">
+            </div>
 
-            </div>
             <div class="label-zagueiro">
               <span>
                 {{zag1.apelido_abreviado}}
@@ -144,9 +152,11 @@
               <span>C$ {{zag2.preco_num}}</span>
             </div>
             <div class="pontuacao-flutuante" *ngIf="status['status_mercado'] == 2">
-              <span>{{zag2.pontos_num}}</span>
+              <span class="positivo" *ngIf="zag2.pontos_num > 0">{{zag2.pontos_num}}</span>
+              <span class="negativo" *ngIf="zag2.pontos_num < 0">{{zag2.pontos_num}}</span>
+              <span class="nulo" *ngIf="zag2.pontos_num == 0">{{zag2.pontos_num}}</span>
             </div>
-            <div class="zag" style="background-image: url('{{zag2.foto}}')" (click)="modificarJogador(zag2)">
+            <div class="zag {{zag2.status_lista[0].slug}}" style="background-image: url('{{zag2.foto}}')" (click)="modificarJogador(zag2)">
 
             </div>
             <div class="label-zagueiro">
@@ -160,9 +170,11 @@
               <span>C$ {{lat2.preco_num}}</span>
             </div>
             <div class="pontuacao-flutuante" *ngIf="status['status_mercado'] == 2">
-              <span>{{lat2.pontos_num}}</span>
+              <span class="positivo" *ngIf="lat2.pontos_num > 0">{{lat2.pontos_num}}</span>
+              <span class="negativo" *ngIf="lat2.pontos_num < 0">{{lat2.pontos_num}}</span>
+              <span class="nulo" *ngIf="lat2.pontos_num == 0">{{lat2.pontos_num}}</span>
             </div>
-            <div class="lat" style="background-image: url('{{lat2.foto}}')" (click)="modificarJogador(lat2)">
+            <div class="lat {{lat2.status_lista[0].slug}}" style="background-image: url('{{lat2.foto}}')" (click)="modificarJogador(lat2)">
 
             </div>
             <div class="label-lateral">
@@ -180,9 +192,11 @@
               <span>C$ {{mei1.preco_num}}</span>
             </div>
             <div class="pontuacao-flutuante" *ngIf="status['status_mercado'] == 2">
-              <span>{{mei1.pontos_num}}</span>
+              <span class="positivo" *ngIf="mei1.pontos_num > 0">{{mei1.pontos_num}}</span>
+              <span class="negativo" *ngIf="mei1.pontos_num < 0">{{mei1.pontos_num}}</span>
+              <span class="nulo" *ngIf="mei1.pontos_num == 0">{{mei1.pontos_num}}</span>
             </div>
-            <div class="mei" style="background-image: url('{{mei1.foto}}')" (click)="modificarJogador(mei1)">
+            <div class="mei {{mei1.status_lista[0].slug}}" style="background-image: url('{{mei1.foto}}')" (click)="modificarJogador(mei1)">
 
             </div>
             <div class="label-meia">
@@ -196,9 +210,11 @@
               <span>C$ {{mei2.preco_num}}</span>
             </div>
             <div class="pontuacao-flutuante" *ngIf="status['status_mercado'] == 2">
-              <span>{{mei2.pontos_num}}</span>
+              <span class="positivo" *ngIf="mei2.pontos_num > 0">{{mei2.pontos_num}}</span>
+              <span class="negativo" *ngIf="mei2.pontos_num < 0">{{mei2.pontos_num}}</span>
+              <span class="nulo" *ngIf="mei2.pontos_num == 0">{{mei2.pontos_num}}</span>
             </div>
-            <div class="mei" style="background-image: url('{{mei2.foto}}')" (click)="modificarJogador(mei2)">
+            <div class="mei {{mei2.status_lista[0].slug}}" style="background-image: url('{{mei2.foto}}')" (click)="modificarJogador(mei2)">
 
             </div>
             <div class="label-meia">
@@ -212,9 +228,11 @@
               <span>C$ {{mei3.preco_num}}</span>
             </div>
             <div class="pontuacao-flutuante" *ngIf="status['status_mercado'] == 2">
-              <span>{{mei3.pontos_num}}</span>
+              <span class="positivo" *ngIf="mei3.pontos_num > 0">{{mei3.pontos_num}}</span>
+              <span class="negativo" *ngIf="mei3.pontos_num < 0">{{mei3.pontos_num}}</span>
+              <span class="nulo" *ngIf="mei3.pontos_num == 0">{{mei3.pontos_num}}</span>
             </div>
-            <div class="mei" style="background-image: url('{{mei3.foto}}')" (click)="modificarJogador(mei3)">
+            <div class="mei {{mei3.status_lista[0].slug}}" style="background-image: url('{{mei3.foto}}')" (click)="modificarJogador(mei3)">
 
             </div>
             <div class="label-meia">
@@ -232,9 +250,11 @@
               <span>C$ {{ata1.preco_num}}</span>
             </div>
             <div class="pontuacao-flutuante" *ngIf="status['status_mercado'] == 2">
-              <span>{{ata1.pontos_num}}</span>
+              <span class="positivo" *ngIf="ata1.pontos_num > 0">{{ata1.pontos_num}}</span>
+              <span class="negativo" *ngIf="ata1.pontos_num < 0">{{ata1.pontos_num}}</span>
+              <span class="nulo" *ngIf="ata1.pontos_num == 0">{{ata1.pontos_num}}</span>
             </div>
-            <div class="ata" style="background-image: url('{{ata1.foto}}')" (click)="modificarJogador(ata1)">
+            <div class="ata {{ata1.status_lista[0].slug}}" style="background-image: url('{{ata1.foto}}')" (click)="modificarJogador(ata1)">
 
             </div>
             <div class="label-atacante">
@@ -249,9 +269,11 @@
               <span>C$ {{ata2.preco_num}}</span>
             </div>
             <div class="pontuacao-flutuante" *ngIf="status['status_mercado'] == 2">
-              <span>{{ata2.pontos_num}}</span>
+              <span class="positivo" *ngIf="ata2.pontos_num > 0">{{ata2.pontos_num}}</span>
+              <span class="negativo" *ngIf="ata2.pontos_num < 0">{{ata2.pontos_num}}</span>
+              <span class="nulo" *ngIf="ata2.pontos_num == 0">{{ata2.pontos_num}}</span>
             </div>
-            <div class="ata" style="background-image: url('{{ata2.foto}}')" (click)="modificarJogador(ata2)">
+            <div class="ata {{ata2.status_lista[0].slug}}" style="background-image: url('{{ata2.foto}}')" (click)="modificarJogador(ata2)">
 
             </div>
             <div class="label-atacante">
@@ -266,9 +288,11 @@
               <span>C$ {{ata3.preco_num}}</span>
             </div>
             <div class="pontuacao-flutuante" *ngIf="status['status_mercado'] == 2">
-              <span>{{ata3.pontos_num}}</span>
+              <span class="positivo" *ngIf="ata3.pontos_num > 0">{{ata3.pontos_num}}</span>
+              <span class="negativo" *ngIf="ata3.pontos_num < 0">{{ata3.pontos_num}}</span>
+              <span class="nulo" *ngIf="ata3.pontos_num == 0">{{ata3.pontos_num}}</span>
             </div>
-            <div class="ata" style="background-image: url('{{ata3.foto}}')" (click)="modificarJogador(ata3)">
+            <div class="ata {{ata3.status_lista[0].slug}}" style="background-image: url('{{ata3.foto}}')" (click)="modificarJogador(ata3)">
 
             </div>
             <div class="label-atacante">
@@ -283,7 +307,7 @@
 
     <div *ngIf="visualizarFicha">
       <br>
-      <div class="caixa-ficha" *ngFor="let dados of listaJogadoresFicha">
+      <div class="caixa-ficha" *ngFor="let dados of listaJogadoresFicha" [routerLink]="['/detalhe-jogador',dados.atleta_id]">
         <div class="jogadores">
           <div class="caixa-1">
             <img src="{{dados.foto}}" width="60">

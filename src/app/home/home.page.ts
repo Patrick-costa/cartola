@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import * as moment from 'moment';
-import { environment } from '../../../environments/environment.prod';
+import { environment } from '../../environments/environment.prod';
 
 @Component({
   selector: 'app-home',

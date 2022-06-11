@@ -1,0 +1,460 @@
+@import url("https://fonts.googleapis.com/css2?family=Glegoo&family=Roboto+Slab:wght@700;900&display=swap");
+*::-webkit-scrollbar {
+  display: none !important;
+}
+ion-toolbar {
+  --background: #ff7400;
+  --opacity: 1 !important;
+  box-shadow: none;
+  ion-icon{
+    position: relative;
+    left: 5px;
+    font-size: 20px;
+    color: #fff;
+  }
+  div.container-topo {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    div.texto-dashboard {
+      color: #ffffff;
+      font-size: 16px;
+      font-weight: 500;
+      margin-left: 10px;
+      width: 85%;
+    }
+  }
+}
+ion-content {
+  --background: #e9e9e9;
+}
+.detalhe-jogador {
+  width: 100%;
+  height: 110px;
+  padding-left: 30px;
+  background-color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  .caixa-jogador {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    div.caixa-dados {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      justify-content: center;
+      span.nome {
+        font-weight: 900;
+        font-family: "Roboto Slab", serif;
+        font-size: 16px;
+        text-transform: uppercase;
+      }
+      span.detalhes {
+        text-transform: uppercase;
+        color: #c9c9c9;
+        font-weight: 400;
+        font-size: 10px;
+      }
+
+      div.caixa-preco {
+        border: 1px solid #e9e9e9;
+        padding: 7px;
+        border-radius: 2px;
+
+        div.preco {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          .cs {
+            font-weight: 400;
+            margin-right: 5px;
+          }
+          span.preco {
+            font-family: "Roboto Slab", serif;
+            margin-right: 10px;
+          }
+
+          .positivo {
+            color: #26ca5e;
+            font-family: "Roboto Slab", serif;
+          }
+          .negativo {
+            color: #ff0320;
+            font-family: "Roboto Slab", serif;
+          }
+          .nulo {
+            color: #e9e9e9;
+            font-family: "Roboto Slab", serif;
+          }
+        }
+      }
+
+      div.pontuacao {
+        display: flex;
+        align-items: flex-start;
+        justify-content: center;
+        margin-top: 5px;
+        .positivo {
+          font-weight: 900;
+          font-size: 20px;
+          color: #26ca5e;
+          font-family: "Roboto Slab", serif;
+        }
+        .negativo {
+          font-weight: 900;
+          font-size: 20px;
+          color: red;
+          font-family: "Roboto Slab", serif;
+        }
+        .nulo {
+          font-size: 20px;
+          font-weight: 900;
+          font-family: "Roboto Slab", serif;
+          color: #9b9b9b;
+        }
+
+        .pts {
+          color: #c9c9c9;
+          font-weight: 400;
+          font-size: 12px;
+        }
+      }
+    }
+    div {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      .foto-jogador {
+        width: 80px;
+        height: 80px;
+        background-size: cover;
+        border-radius: 50%;
+        border: 1px solid #e9e9e9;
+      }
+      img {
+        position: relative;
+        top: 20px;
+        right: 25px;
+      }
+    }
+  }
+}
+.estatisticas {
+  width: 100%;
+  background-color: #fff;
+  border-top: 1px solid #e9e9e9;
+  padding: 20px;
+  .caixa {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+
+    .valor{
+      font-size: 14px;
+      font-family: "Roboto Slab", serif;
+      color: #000;
+      position: relative;
+      bottom: 3px;
+    }
+    .media {
+      display: flex;
+      align-items: center;
+      flex-direction: column;
+      font-weight: 400;
+      color: #c9c9c9;
+      text-transform: uppercase;
+      font-size: 9px;
+    }
+    .ultPontuacao {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      font-weight: 400;
+      color: #c9c9c9;
+      text-transform: uppercase;
+      font-size: 9px;
+    }
+    .minValorizar {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      font-weight: 400;
+      color: #c9c9c9;
+      text-transform: uppercase;
+      font-size: 9px;
+    }
+  }
+}
+
+div.caixa-ultJogo {
+  width: 100%;
+  height: 120px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  margin-top: 30px;
+
+  span.ultJogo {
+    text-transform: uppercase;
+    font-weight: 900;
+    font-size: 12px;
+  }
+
+  .caixa-jogo {
+    margin-top: 5px;
+    width: 100%;
+    height: 100%;
+    background-color: #ffffff;
+    padding: 10px;
+    div.caixa-jogos {
+      width: 100%;
+      height: 100%;
+      div.local {
+        height: 20%;
+        margin-bottom: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-transform: capitalize;
+        font-size: 10px;
+        font-weight: 400;
+        text-transform: uppercase;
+        color: #9b9b9b;
+        span.bola {
+          color: black !important;
+        }
+      }
+
+      div.confrontos {
+        height: 60%;
+        width: 90%;
+        margin: 0 auto;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        .time-casa {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          img {
+            margin-left: 10px;
+          }
+          div.e {
+            width: 4px;
+            height: 4px;
+            background-color: gray;
+            border-radius: 50%;
+            margin-left: 2px;
+          }
+          div.v {
+            width: 4px;
+            height: 4px;
+            background-color: green;
+            border-radius: 50%;
+            margin-left: 2px;
+          }
+          div.d {
+            width: 4px;
+            height: 4px;
+            background-color: red;
+            border-radius: 50%;
+            margin-left: 2px;
+          }
+
+          .ultimo {
+            width: 6px !important;
+            height: 6px !important;
+          }
+        }
+        .placar {
+          font-size: 16px;
+          font-weight: bold;
+          margin-left: 10px;
+          margin-right: 10px;
+        }
+
+        .time-visitante {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          img {
+            margin-right: 10px;
+          }
+          div.e {
+            width: 4px;
+            height: 4px;
+            background-color: gray;
+            border-radius: 50%;
+            margin-left: 2px;
+          }
+          div.v {
+            width: 4px;
+            height: 4px;
+            background-color: green;
+            border-radius: 50%;
+            margin-left: 2px;
+          }
+          div.d {
+            width: 4px;
+            height: 4px;
+            background-color: red;
+            border-radius: 50%;
+            margin-left: 2px;
+          }
+          .ultimo {
+            width: 6px !important;
+            height: 6px !important;
+          }
+        }
+      }
+      .validade {
+        margin-top: 10px;
+        font-size: 10px;
+        color: #9b9b9b;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .encerrada,
+      .andamento {
+        margin-top: 10px;
+        font-size: 10px;
+        font-weight: bold;
+        text-transform: uppercase;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        a {
+          text-decoration: none;
+          color: #ff7400;
+        }
+      }
+    }
+  }
+}
+
+div.caixa-rodada {
+  width: 100%;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  margin-top: 30px;
+
+  span.titulo-rodada {
+    text-transform: uppercase;
+    font-weight: 900;
+    font-size: 12px;
+  }
+  .rodada {
+    margin-top: 5px;
+    width: 100%;
+    height: 100%;
+    background-color: #ffffff;
+    padding: 15px;
+
+    .texto-pontuacao {
+      font-weight: 900;
+      text-transform: uppercase;
+      font-size: 11px;
+      padding-left: 6px;
+    }
+
+    .grafico {
+      width: 230%;
+      overflow: auto;
+      height: 200px;
+
+      canvas {
+        overflow: auto;
+      }
+    }
+
+    div {
+      width: 100%;
+      // border-bottom: 1px solid #e9e9e9;
+      padding: 2px;
+
+      .caixa-for {
+        display: flex;
+        align-items: center;
+        border-bottom: 1px solid #e9e9e9;
+      }
+      .scout-numeros {
+        font-size: 11px;
+        font-weight: 600;
+      }
+      .valorTotal {
+        font-family: "Roboto Slab", serif;
+        font-weight: 900;
+        font-size: 12px;
+      }
+
+      .scout-nome {
+        font-size: 11px;
+        font-weight: 400;
+        color: #c9c9c9;
+      }
+    }
+    .caixa-total {
+      padding: 5px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 20px;
+      .texto-total {
+        font-size: 12px;
+        text-transform: uppercase;
+        font-weight: 600;
+      }
+      .valor-total {
+        font-family: "Roboto Slab", serif;
+        font-weight: 900;
+        font-size: 14px;
+      }
+    }
+  }
+}
+
+.splash {
+  height: 100vh;
+  width: 100%;
+  background: #e9e9e9;
+  position: absolute;
+  top: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: 1s;
+  .loader {
+      border: 8px solid #f3f3f3; /* Light grey */
+      border-top: 8px solid #ff7400; /* Blue */
+      border-radius: 50%;
+      width: 50px;
+      height: 50px;
+      animation: spin 2s linear infinite;
+  }
+
+  @keyframes spin {
+      0% {
+          transform: rotate(0deg);
+      }
+      100% {
+          transform: rotate(360deg);
+      }
+  }
+}
+
+.desabilitar-splash {
+  display: none;
+}

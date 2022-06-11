@@ -25,22 +25,22 @@ export class EscalacaoPage implements OnInit {
   esquemaAtual;
   esquemaAtualList = [];
   esquemaAtualId;
-  gol = {'preco_num':"", 'apelido_abreviado': "", 'pontos_num': '', 'foto':''};
-  zag2 = {'preco_num':"", 'apelido_abreviado': "", 'pontos_num': '', 'foto':''};
-  zag1 = {'preco_num':"", 'apelido_abreviado': "", 'pontos_num': '', 'foto':''};
-  zag3 = {'preco_num':"", 'apelido_abreviado': "", 'pontos_num': '', 'foto':''};
-  lat1 = {'preco_num':"", 'apelido_abreviado': "", 'pontos_num': '', 'foto':''};
-  lat2 = {'preco_num':"", 'apelido_abreviado': "", 'pontos_num': '', 'foto':''};
-  mei1 = {'preco_num':"", 'apelido_abreviado': "", 'pontos_num': '', 'foto':''};
-  mei2 = {'preco_num':"", 'apelido_abreviado': "", 'pontos_num': '', 'foto':''};
-  mei3 = {'preco_num':"", 'apelido_abreviado': "", 'pontos_num': '', 'foto':''};
-  mei4 = {'preco_num':"", 'apelido_abreviado': "", 'pontos_num': '', 'foto':''};
-  mei5 = {'preco_num':"", 'apelido_abreviado': "", 'pontos_num': '', 'foto':''};
-  ata1 = {'preco_num':"", 'apelido_abreviado': "", 'pontos_num': '', 'foto':''};
-  ata2 = {'preco_num':"", 'apelido_abreviado': "", 'pontos_num': '', 'foto':''};
-  ata3 = {'preco_num':"", 'apelido_abreviado': "", 'pontos_num': '', 'foto':''};
-  ata4 = {'preco_num':"", 'apelido_abreviado': "", 'pontos_num': '', 'foto':''};
-  tec = {'preco_num':"", 'apelido_abreviado': "", 'pontos_num': '', 'foto':''};
+  gol = {'preco_num':"", 'apelido_abreviado': "", 'pontos_num': 0, 'foto':'', 'atleta_id': 0, 'status_lista':[{'slug':""}]};
+  zag2 = {'preco_num':"", 'apelido_abreviado': "", 'pontos_num': 0, 'foto':'', 'atleta_id': 0, 'status_lista':[{'slug':""}]};
+  zag1 = {'preco_num':"", 'apelido_abreviado': "", 'pontos_num': 0, 'foto':'', 'atleta_id': 0, 'status_lista':[{'slug':""}]};
+  zag3 = {'preco_num':"", 'apelido_abreviado': "", 'pontos_num': 0, 'foto':'', 'atleta_id': 0, 'status_lista':[{'slug':""}]};
+  lat1 = {'preco_num':"", 'apelido_abreviado': "", 'pontos_num': 0, 'foto':'', 'atleta_id': 0, 'status_lista':[{'slug':""}]};
+  lat2 = {'preco_num':"", 'apelido_abreviado': "", 'pontos_num': 0, 'foto':'', 'atleta_id': 0, 'status_lista':[{'slug':""}]};
+  mei1 = {'preco_num':"", 'apelido_abreviado': "", 'pontos_num': 0, 'foto':'', 'atleta_id': 0, 'status_lista':[{'slug':""}]};
+  mei2 = {'preco_num':"", 'apelido_abreviado': "", 'pontos_num': 0, 'foto':'', 'atleta_id': 0, 'status_lista':[{'slug':""}]};
+  mei3 = {'preco_num':"", 'apelido_abreviado': "", 'pontos_num': 0, 'foto':'', 'atleta_id': 0, 'status_lista':[{'slug':""}]};
+  mei4 = {'preco_num':"", 'apelido_abreviado': "", 'pontos_num': 0, 'foto':'', 'atleta_id': 0, 'status_lista':[{'slug':""}]};
+  mei5 = {'preco_num':"", 'apelido_abreviado': "", 'pontos_num': 0, 'foto':'', 'atleta_id': 0, 'status_lista':[{'slug':""}]};
+  ata1 = {'preco_num':"", 'apelido_abreviado': "", 'pontos_num': 0, 'foto':'', 'atleta_id': 0, 'status_lista':[{'slug':""}]};
+  ata2 = {'preco_num':"", 'apelido_abreviado': "", 'pontos_num': 0, 'foto':'', 'atleta_id': 0, 'status_lista':[{'slug':""}]};
+  ata3 = {'preco_num':"", 'apelido_abreviado': "", 'pontos_num': 0, 'foto':'', 'atleta_id': 0, 'status_lista':[{'slug':""}]};
+  ata4 = {'preco_num':"", 'apelido_abreviado': "", 'pontos_num': 0, 'foto':'', 'atleta_id': 0, 'status_lista':[{'slug':""}]};
+  tec = {'preco_num':"", 'apelido_abreviado': "", 'pontos_num': 0, 'foto':'', 'atleta_id': 0, 'status_lista':[{'slug':""}]};
   modificaJogador = [];
   posicao = [
     {
@@ -133,7 +133,6 @@ export class EscalacaoPage implements OnInit {
 
   ionViewDidEnter() {
     this.carregarClubes();
-    this.carregarAtletas();
     this.carregarStatus();
   }
   ngOnInit() {
@@ -156,7 +155,7 @@ export class EscalacaoPage implements OnInit {
     )
   }
 
-  carregarUsuario() {
+  async carregarUsuario() {
     let headers = new HttpHeaders().append('X-GLB-Token', this.token);
 
     this.http.get('https://cors-anywhere.herokuapp.com/https://api.cartolafc.globo.com/auth/time', { headers }).subscribe(x => {
@@ -173,7 +172,7 @@ export class EscalacaoPage implements OnInit {
         this.listaEscalados[i] = this.usuario['atletas'][i].atleta_id;
       }
 
-      setTimeout(() => {
+
         if (this.status['status_mercado'] == 2) {
 
           //Retorna os atletas pontuados e realiza filtragem com os atletas escalados pelo usuario
@@ -189,7 +188,7 @@ export class EscalacaoPage implements OnInit {
             });
           });
         }
-      }, 1000);
+    
 
       //Chamar esquemas de jogos e manipula-los
       this.http.get('https://api.cartola.globo.com/esquemas').subscribe(e => {
@@ -202,14 +201,15 @@ export class EscalacaoPage implements OnInit {
             this.esquemaAtual = f.nome;
           }
         });
-      })
+      });
+      this.carregarAtletas();
     });
 
 
 
   }
 
-  carregarAtletas() {
+  async carregarAtletas() {
     setTimeout(() => {
       this.http.get('https://api.cartola.globo.com/atletas/mercado').subscribe(x => {
         this.atletas = [11];
@@ -218,39 +218,51 @@ export class EscalacaoPage implements OnInit {
           for (var i = 0; i < array.length; i++) {
             if (array[i].atleta_id == this.listaEscalados[0]) {
               this.atletas[0] = array[i]
+              this.atletas[0].pontos_num = 0;
             }
             if (array[i].atleta_id == this.listaEscalados[1]) {
               this.atletas[1] = array[i]
+              this.atletas[1].pontos_num = 0;
             }
             if (array[i].atleta_id == this.listaEscalados[2]) {
               this.atletas[2] = array[i]
+              this.atletas[2].pontos_num = 0;
             }
             if (array[i].atleta_id == this.listaEscalados[3]) {
               this.atletas[3] = array[i]
+              this.atletas[3].pontos_num = 0;
             }
             if (array[i].atleta_id == this.listaEscalados[4]) {
               this.atletas[4] = array[i]
+              this.atletas[4].pontos_num = 0;
             }
             if (array[i].atleta_id == this.listaEscalados[5]) {
               this.atletas[5] = array[i]
+              this.atletas[5].pontos_num = 0;
             }
             if (array[i].atleta_id == this.listaEscalados[6]) {
               this.atletas[6] = array[i]
+              this.atletas[6].pontos_num = 0;
             }
             if (array[i].atleta_id == this.listaEscalados[7]) {
               this.atletas[7] = array[i]
+              this.atletas[7].pontos_num = 0;
             }
             if (array[i].atleta_id == this.listaEscalados[8]) {
               this.atletas[8] = array[i]
+              this.atletas[8].pontos_num = 0;
             }
             if (array[i].atleta_id == this.listaEscalados[9]) {
               this.atletas[9] = array[i]
+              this.atletas[9].pontos_num = 0;
             }
             if (array[i].atleta_id == this.listaEscalados[10]) {
               this.atletas[10] = array[i]
+              this.atletas[10].pontos_num = 0;
             }
             if (array[i].atleta_id == this.listaEscalados[11]) {
               this.atletas[11] = array[i]
+              this.atletas[11].pontos_num = 0;
             }
           }
         });
@@ -310,14 +322,14 @@ export class EscalacaoPage implements OnInit {
         },
 
         ];
+
         const gol = this.time[0].gol;
         const zag = [this.time[1].zaga];
         const lat = [this.time[1].lateral];
         const mei = [this.time[2].meio];
         const ata = [this.time[3].ataque];
         const tec = [this.time[0].tec];
-
-
+ 
         gol.forEach(x => {
           x.foto = x.foto.replace('FORMATO', '140x140');
           if (this.status['status_mercado'] == 2) {
@@ -441,13 +453,6 @@ export class EscalacaoPage implements OnInit {
           })
         });
 
-        // this.gol = this.time[0].gol;
-        // this.tec = this.time[0].tec;
-        // this.zag = this.time[1].zaga;
-        // this.lat = this.time[1].lateral;
-        // this.mei = this.time[2].meio;
-        // this.ata = this.time[3].ataque;
-
         if (this.esquemaAtualId == 3) {
           this.gol = this.time[0].gol[0];
           this.zag1 = this.time[1].zaga[0];
@@ -489,7 +494,7 @@ export class EscalacaoPage implements OnInit {
       setTimeout(() => {        
         this.splash.nativeElement.classList.add('desabilitar-splash');
       }, 500);
-    }, 3500);
+    }, 1000);
   }
 
 
@@ -516,6 +521,7 @@ export class EscalacaoPage implements OnInit {
     this.el1.nativeElement.classList.remove('active');
     this.visualizarCampo = false;
     this.visualizarFicha = true;
+    this.modificaJogador = [];
   }
 
   //Alterar visualização para campo
@@ -558,9 +564,45 @@ export class EscalacaoPage implements OnInit {
   venderJogador(id) {
     for (var i = 0; i < 12; i++) {
       if (this.listaEscalados[i] == id) {
-        this.listaEscalados[i] = '';
+        this.listaEscalados = this.listaEscalados.filter(x => {
+          return x != id;
+        })
         console.log(this.listaEscalados);
-        this.carregarAtletas();
+        // this.carregarAtletas();
+        if(this.gol.atleta_id == id){
+          this.gol = {'preco_num':"", 'apelido_abreviado': "GOL", 'pontos_num': 0, 'foto':'', 'atleta_id': 0, 'status_lista':[{'slug':""}]};
+        } else if(this.zag1.atleta_id == id){
+          this.zag1= {'preco_num':"", 'apelido_abreviado': "ZAG", 'pontos_num': 0, 'foto':'', 'atleta_id': 0, 'status_lista':[{'slug':""}]};
+        } else if(this.zag2.atleta_id == id){
+          this.zag2 = {'preco_num':"", 'apelido_abreviado': "ZAG", 'pontos_num': 0, 'foto':'', 'atleta_id': 0, 'status_lista':[{'slug':""}]};
+        } else if(this.zag3.atleta_id == id){
+          this.zag3 = {'preco_num':"", 'apelido_abreviado': "ZAG", 'pontos_num': 0, 'foto':'', 'atleta_id': 0, 'status_lista':[{'slug':""}]};
+        } else if(this.lat1.atleta_id == id){
+          this.lat1 = {'preco_num':"", 'apelido_abreviado': "LAT", 'pontos_num': 0, 'foto':'', 'atleta_id': 0, 'status_lista':[{'slug':""}]};
+        } else if(this.lat2.atleta_id == id){
+          this.lat2 = {'preco_num':"", 'apelido_abreviado': "LAT", 'pontos_num': 0, 'foto':'', 'atleta_id': 0, 'status_lista':[{'slug':""}]};
+        } else if(this.mei1.atleta_id == id ){
+          this.mei1 = {'preco_num':"", 'apelido_abreviado': "MEI", 'pontos_num': 0, 'foto':'', 'atleta_id': 0, 'status_lista':[{'slug':""}]};
+        } else if(this.mei2.atleta_id == id){
+          this.mei2 = {'preco_num':"", 'apelido_abreviado': "MEI", 'pontos_num': 0, 'foto':'', 'atleta_id': 0, 'status_lista':[{'slug':""}]};
+        } else if(this.mei3.atleta_id == id){
+          this.mei3 = {'preco_num':"", 'apelido_abreviado': "MEI", 'pontos_num': 0, 'foto':'', 'atleta_id': 0, 'status_lista':[{'slug':""}]};
+        } else if(this.mei4.atleta_id == id){
+          this.mei4 = {'preco_num':"", 'apelido_abreviado': "MEI", 'pontos_num': 0, 'foto':'', 'atleta_id': 0, 'status_lista':[{'slug':""}]};
+        } else if(this.ata1.atleta_id == id){
+          this.ata1 = {'preco_num':"", 'apelido_abreviado': "ATA", 'pontos_num': 0, 'foto':'', 'atleta_id': 0, 'status_lista':[{'slug':""}]};
+        } else if(this.ata2.atleta_id == id){
+          this.ata2 = {'preco_num':"", 'apelido_abreviado': "ATA", 'pontos_num': 0, 'foto':'', 'atleta_id': 0, 'status_lista':[{'slug':""}]};
+        } else if(this.ata3.atleta_id == id){
+          this.ata3 = {'preco_num':"", 'apelido_abreviado': "ATA", 'pontos_num': 0, 'foto':'', 'atleta_id': 0, 'status_lista':[{'slug':""}]};
+        } else if(this.ata4.atleta_id == id){
+          this.ata4 = {'preco_num':"", 'apelido_abreviado': "ATA", 'pontos_num': 0, 'foto':'', 'atleta_id': 0, 'status_lista':[{'slug':""}]};
+        } else if(this.tec.atleta_id == id){
+          this.tec = {'preco_num':"", 'apelido_abreviado': "TEC", 'pontos_num': 0, 'foto':'', 'atleta_id': 0, 'status_lista':[{'slug':""}]};
+        }
+
+
+
         this.fecharModal();
       }
     }

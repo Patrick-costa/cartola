@@ -1,0 +1,185 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start" >
+      <ion-icon name="arrow-back" routerLink="/home/escalacao"></ion-icon>
+    </ion-buttons>
+    <div class="container-topo">
+      <div class="texto-dashboard" *ngFor="let dados of atleta">{{dados.apelido}}</div>
+    </div>
+  </ion-toolbar>
+
+</ion-header>
+<ion-content [fullscreen]="true">
+  <div class="detalhe-jogador" *ngFor="let dados of atleta">
+    <div class="caixa-jogador" *ngIf="statusMercado == 1">
+      <div>
+        <div class="foto-jogador" style="background-image: url('{{dados.foto}}')"></div>
+        <img src="{{dados.clube[0].escudos['30x30']}}">
+      </div>
+      <div class="caixa-dados">
+        <span class="nome">
+          {{dados.apelido}}
+        </span>
+        <span class="detalhes">
+          <span>
+            {{dados.posicao_lista[0].abreviacao}}&nbsp;•&nbsp;
+          </span>
+          <span>
+            {{dados.clube[0].nome}}&nbsp;•&nbsp;
+          </span>
+          <span>
+            {{dados.jogos_num}}&nbsp;Jogos
+          </span>
+        </span>
+        <div class="caixa-preco">
+          <div class="preco"><span><span>C$ </span><span class="preco">{{dados.preco_num}}</span>
+              <span class='positivo' *ngIf="dados.variacao_num > 0">{{dados.variacao_num}}</span>
+              <span class='negativo' *ngIf="dados.variacao_num < 0">{{dados.variacao_num}}</span>
+              <span class='nulo' *ngIf="dados.variacao_num == 0">0.00</span>
+            </span>
+          </div>
+        </div>
+      </div>
+      <hr>
+    </div>
+    
+
+    <div class="caixa-jogador" *ngIf="statusMercado == 2">
+      <div>
+        <div class="foto-jogador" style="background-image: url('{{dados.foto}}')"></div>
+        <img src="{{dados.clube[0].escudos['30x30']}}">
+      </div>
+      <div class="caixa-dados">
+        <span class="nome">
+          {{dados.apelido}}
+        </span>
+        <span class="detalhes">
+          <span>
+            {{dados.posicao_lista[0].abreviacao}}&nbsp;•&nbsp;
+          </span>
+          <span>
+            {{dados.clube[0].nome}}&nbsp;•&nbsp;
+          </span>
+          <span>
+            {{dados.jogos_num}}&nbsp;Jogos
+          </span>
+        </span>
+        <div class="pontuacao">
+          <span class="positivo" *ngIf="dados.parcial > 0">{{dados.parcial}}</span>
+          <span class="negativo" *ngIf="dados.parcial < 0">{{dados.parcial}}</span>
+          <span class="nulo" *ngIf="dados.parcial == 0">{{dados.parcial}}</span>
+          <span class="pts">&nbsp;pts</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="estatisticas" *ngFor="let dados of atleta">
+    <div class="caixa">
+      <div class="media">
+        <span class="media">Média</span>
+        <span class="valor">{{dados.media_num}}</span>
+      </div>
+      <div class="ultPontuacao">
+        <span class="ultPontuacao">Ultima Pontuação</span>
+        <span class="valor">{{dados.pontos_num}}</span>
+      </div>
+      <div class="minValorizar">
+        <span class="minValorizar">Mín. Valorizar</span>
+        <span class="valor">{{dados.minimo_para_valorizar}}</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="caixa-ultJogo">
+    <span class="ultJogo">
+      <span *ngIf='statusMercado == 1'>Proximo Jogo</span>
+      <span *ngIf='statusMercado == 2'>Jogo atual</span>
+    </span>
+    <div class="caixa-jogo">
+      <div class="confronto" *ngFor="let dados of confronto">
+        <div class="caixa-jogos">
+          <div class="local">
+            {{dados.data | date: 'EEE dd/MM/y' }} <span class="bola">&nbsp;&nbsp;•&nbsp;&nbsp;</span> {{dados.local}}
+            <span class="bola">&nbsp;&nbsp;•&nbsp;&nbsp;</span> {{dados.data | date: 'H:mm'}}
+          </div>
+          <div class="confrontos">
+            <div class="time-casa">
+              <div class="{{dados.historico_casa[0]}}"></div>
+              <div class="{{dados.historico_casa[1]}}"></div>
+              <div class="{{dados.historico_casa[2]}}"></div>
+              <div class="{{dados.historico_casa[3]}}"></div>
+              <div class="{{dados.historico_casa[4]}} ultimo"></div>
+
+              <img width='25' src="{{dados.time_casa[0].escudos['30x30']}}">
+            </div>
+            <div class="placar">
+              {{dados.placar_mandante}}
+            </div>
+            x
+            <div class="placar">
+              {{dados.placar_visitante}}
+            </div>
+            <div class="time-visitante">
+              <img width='25' src="{{dados.time_visitante[0].escudos['30x30']}}">
+              <div class="{{dados.historico_visitante[4]}} ultimo"></div>
+              <div class="{{dados.historico_visitante[3]}}"></div>
+              <div class="{{dados.historico_visitante[2]}}"></div>
+              <div class="{{dados.historico_visitante[1]}}"></div>
+              <div class="{{dados.historico_visitante[0]}}"></div>
+            </div>
+          </div>
+          <div class="validade" *ngIf="dados.validade == false">
+            ESTA PARTIDA NÃO É VALIDA PARA A RODADA
+          </div>
+          <div class="encerrada" *ngIf="dados.status == 'ENCERRADA' && dados.validade == true">
+            <a href="{{dados.transmissao.url}}">{{dados.transmissao.label}}</a>
+          </div>
+          <div class="andamento" *ngIf="dados.status == 'EM_ANDAMENTO' && dados.validade == true">
+            <a href="{{dados.transmissao.url}}">{{dados.transmissao.label}}</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="caixa-rodada">
+    <span class="titulo-rodada">
+      PONTUAÇÃO
+    </span>
+    <div class="rodada">
+      <div class='chart' style="width: 100%; overflow-x: auto; overflow-y: hidden">
+        <div style="width: 2500px; height: 150px;">
+          <canvas id="chart1" height="100" width="0" #grafico></canvas>
+        </div>
+      </div>
+      <br>
+      <span class="texto-pontuacao">Pontuação na temporada</span><br><br>
+      <div *ngFor="let item of arrayScout">
+        <div class="caixa-for">
+          <div class='scout-numeros'>{{item.quantidade}} {{item.abreviacao}} <span
+              class="scout-nome">&nbsp;&nbsp;&nbsp;{{item.nome}}</span></div>
+          <span class='valorTotal'>{{item.valor}}</span>
+        </div>
+      </div>
+      <div class="caixa-total">
+        <span class="texto-total">Total</span>
+        <span class="valor-total">{{valorTotalScout}}0</span>
+      </div>
+    </div>
+  </div>
+  <!-- <div class="caixa-rodada">
+    <span class="titulo-rodada">
+      Rodada {{rodada}}
+    </span>
+    <div class="rodada">
+      <span class="texto-pontuacao">Pontuação</span>
+      <div *ngFor="let item of valorScout | keyvalue">
+        {{item.value}} {{item.key}} 
+      </div>
+    </div>
+  </div> -->
+</ion-content>
+
+<div class="splash" #splash>
+  <div class="loader" #loader></div>
+</div>
